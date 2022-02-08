@@ -20,34 +20,15 @@
     <div class="container">
         <p id="text"></p>
     </div>
-    
-    <script>
-        
-    ocrFunk(); 
 
-    function ocrFunk()
-    {    
-        Tesseract.recognize
-        (
-            // 'https://i2-prod.liverpoolecho.co.uk/incoming/article17096840.ece/ALTERNATES/s615/0_whatsappweb1_censored.jpg',
-            'https://cdn.dribbble.com/users/1644453/screenshots/16718697/media/29c09b7e851274f2712a84c712060b2a.png?compress=1&resize=1600x1200&vertical=top',
-            'eng',
-            { logger: m => console.log(m) }
-        )
-        .then
-        (({ data: { text } }) => 
-            {
-                console.log(text);
-                document.getElementById("text").innerHTML = text;
-            }
-        )
-    }
 
-    </script>
     
     <!-- Bootstrap JS v5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
         crossorigin="anonymous"></script>
+    
+    <!-- Custom scripts -->
+    <script src="script.js"></script>
 </body>
 </html>

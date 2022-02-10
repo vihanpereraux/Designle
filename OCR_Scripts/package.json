@@ -10,7 +10,6 @@
   "author": "vihanpereraux",
   "license": "MIT",
   "dependencies": {
-    "browserify": "^17.0.0",
-    "ml-classify-text": "^2.0.0"
+    "browserify": "^17.0.0"
   }
 }

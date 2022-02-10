@@ -4,31 +4,40 @@ function classifyText()
     const classifier = new Classifier();
 
     // default datasets
-    let greenery = [
-        'Tree',
-        'Leaves',
-        'Planting',
-        'Plants',
+    let plantation = 
+    [
+        'tree',
+        'plant',
+        'coconut',
+        'seeds',
+        'green',
+        'plantation',
+        'garden'
     ]
-     
-    let negative = [
+    
+    let negative = 
+    [
         'This is really bad',
         'I hate it with a passion',
         'Just terrible!',
     ]
 
     // training data
-    classifier.train(greenery, 'greenery');
+    classifier.train(plantation, 'plantation');
     classifier.train(negative, 'negative');
 
     // getting the prediction
-    let predictions = classifier.predict('Plants World')
+    let predictionText = document.getElementById("hero-text").textContent;
+    console.log(predictionText);
+    let predictions = classifier.predict(String(predictionText));
  
     if (predictions.length) 
     {
         predictions.forEach(prediction => 
         {
             console.log(`${prediction.label} (${prediction.confidence})`);
+            document.getElementById("classified-text").innerHTML = 
+                prediction.label + " " + prediction.confidence;
         })
     } 
     else 

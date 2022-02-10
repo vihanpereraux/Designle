@@ -1,5 +1,3 @@
-
-
 var greenArray = [];
 
 fetch('data/something.json')
@@ -11,5 +9,11 @@ fetch('data/something.json')
         {
             greenArray.push(JSON.parse(data)[i]);
         }
-        console.log(greenArray);
+        setLocalStorage();
     });
+
+function setLocalStorage()
+{
+    localStorage.setItem("greenArray", JSON.stringify(greenArray));
+    console.log("Added to the local stoeage");
+} 

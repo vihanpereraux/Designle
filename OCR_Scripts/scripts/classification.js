@@ -1,17 +1,14 @@
-const { Classifier } = require('ml-classify-text')
-
-classifyText();
-
 function classifyText()
 {
     // classifier instance 
     const classifier = new Classifier();
 
     // default datasets
-    let positive = [
-        'This is great, so cool!',
-        'Wow, I love it!',
-        'It really is amazing',
+    let greenery = [
+        'Tree',
+        'Leaves',
+        'Planting',
+        'Plants',
     ]
      
     let negative = [
@@ -21,11 +18,11 @@ function classifyText()
     ]
 
     // training data
-    classifier.train(positive, 'positive');
+    classifier.train(greenery, 'greenery');
     classifier.train(negative, 'negative');
 
     // getting the prediction
-    let predictions = classifier.predict('It sure is pretty great!')
+    let predictions = classifier.predict('Plants World')
  
     if (predictions.length) 
     {

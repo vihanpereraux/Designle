@@ -13,25 +13,25 @@
     <!-- OCR js lib -->
     <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 
-    <!-- Text classification lib -->
-    <script src="classification.js" type="module" ></script>
-
     <title>Document</title>
 </head>
 <body>
 
     <div class="container">
-        <p id="text"></p>
+        <p id="text"></p> <br>
+        <p id="classified-text"></p>
     </div>
 
-
-    
     <!-- Bootstrap JS v5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
         crossorigin="anonymous"></script>
     
     <!-- Custom scripts -->
-    <script src="script.js"></script>
+    <!-- <script src="text_extraction.js"></script> -->
+
+    <!-- Text classification lib -->
+    <script src="dist/bundle.js" ></script>
+
 </body>
 </html>

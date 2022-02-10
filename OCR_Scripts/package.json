@@ -1,0 +1,16 @@
+{
+  "name": "designle",
+  "version": "1.0.0",
+  "description": "This is a browser based UX Suggetions tool for identifying UX defects in UI designs done by UI/UX designers",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "vihanpereraux",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "ml-classify-text": "^2.0.0"
+  }
+}

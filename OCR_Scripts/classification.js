@@ -1,8 +1,6 @@
-// import Classifier from '/ml-classify-text';
 const { Classifier } = require('ml-classify-text')
 
 classifyText();
-
 
 function classifyText()
 {

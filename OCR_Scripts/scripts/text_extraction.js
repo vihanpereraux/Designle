@@ -9,8 +9,9 @@ function extractText()
     Tesseract.recognize
     (
         //'https://i2-prod.liverpoolecho.co.uk/incoming/article17096840.ece/ALTERNATES/s615/0_whatsappweb1_censored.jpg',
-        'https://cdn.dribbble.com/users/1644453/screenshots/16718697/media/29c09b7e851274f2712a84c712060b2a.png?compress=1&resize=1600x1200&vertical=top',
-        //'img.jpg',
+        //'https://cdn.dribbble.com/users/6081502/screenshots/16571095/media/af2c1f5b9bb8f398560e412ce6a278fb.png?compress=1&resize=1600x1200&vertical=top',
+        //'img/img.jpg',
+        'https://i.ibb.co/cX2QYFW/img3.jpg', 
         'eng',
         { logger: m => console.log(m) }
     )
@@ -26,6 +27,8 @@ function extractText()
 function storeData()
 {
     document.getElementById("text").innerHTML = extractedText;
+    console.log(extractedText);
+
     // extracted text to an array
     var textArray = extractedText.split(" ");
     console.log(textArray);
@@ -35,8 +38,9 @@ function storeData()
 
     // element storing array
     let randomNumbers = [];
+    let selectedTextArray = [];
     
-    for (let i = 0; i < 5; i++) 
+    for (let i = 0; i < 3; i++) 
     {
         let randomNumber = Math.floor(Math.random() * textArray.length) + 1;
         // preventing number repitition
@@ -46,8 +50,11 @@ function storeData()
         }
         randomNumbers.push(randomNumber);
         
-        // selected text
-        console.log(textArray[randomNumbers[i]]);       
+        // saving selected word in selectedTextArray[]
+        //console.log(textArray[randomNumbers[i]]);       
     }
-    console.log(randomNumbers);
+
+    // saving randomNumbers[] in local storage
+    localStorage.setItem("textArray", JSON.stringify(textArray));
+    console.log("Extracted data saved in local storage");
 }

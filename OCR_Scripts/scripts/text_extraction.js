@@ -1,31 +1,40 @@
-extractText(); 
+// Reading the uploaded image
+function imgFunction(event)
+{
+    // accessing url of the <img> attribute
+    var outputUrl = document.getElementById('output').src;
+    
+    // setting the url
+	outputUrl = URL.createObjectURL(event.target.files[0]);
 
-var extractedText ;
-var randomKeyWord ;
+    // calling the OCR function
+    extractText(outputUrl);
+}
+
+
 
 // OCR process starts from here
-function extractText()
+function extractText(imageUrl)
 {    
     Tesseract.recognize
-    (
-        //'https://i2-prod.liverpoolecho.co.uk/incoming/article17096840.ece/ALTERNATES/s615/0_whatsappweb1_censored.jpg',
-        'https://cdn.dribbble.com/users/6081502/screenshots/16571095/media/af2c1f5b9bb8f398560e412ce6a278fb.png?compress=1&resize=1600x1200&vertical=top',
-        //'img/img.jpg',
-        //'https://i.ibb.co/cX2QYFW/img3.jpg', 
+    ( 
+        imageUrl,
         'eng',
-        { logger: m => console.log(m) }
+        { logger: message => console.log( message ) }
     )
     .then
     (({ data: { text } }) => 
         {
-            extractedText = text;
-            storeData();
+            analyzingData(text);
         }
     )
 }
 
-function storeData()
+
+
+function analyzingData(text)
 {
+    var extractedText = text;
     document.getElementById("text").innerHTML = extractedText;
     console.log(extractedText);
 
@@ -53,8 +62,4 @@ function storeData()
         // saving selected word in selectedTextArray[]
         console.log(textArray[randomNumbers[i]]);       
     }
-
-    // saving randomNumbers[] in local storage
-    localStorage.setItem("textArray", JSON.stringify(textArray));
-    console.log("Extracted data saved in local storage");
 }

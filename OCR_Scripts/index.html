@@ -13,11 +13,10 @@
     <!-- OCR js lib -->
     <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 
+    <!-- Text classifier js lib -->
     <script src="https://cdn.jsdelivr.net/npm/ml-classify-text@2.0.0/lib/index.js"></script>
 
-    <script src="https://unpkg.com/extract-colors"></script>
-
-    <title>Document</title>
+    <title>Designle</title>
 </head>
 <body>
 
@@ -26,6 +25,17 @@
         <p id="classified-text"></p>
         <h3 id="hero-text">crypto</h3>
         <a onclick="classifyText()" class="btn btn-primary">Do the Math</a>
+
+        <p><br>
+            <label for="file" style="cursor: pointer;">Upload Image</label>
+        </p>
+        <p>
+            <input type="file"  accept="image/*" name="image" id="file"  onchange="imgFunction(event)">
+        </p>
+        <p>
+            <img id="output" width="200" />
+        </p>
+
     </div>
 
 
@@ -35,7 +45,7 @@
         crossorigin="anonymous"></script>
     
     <!-- Text extraction scripts -->
-    <!-- <script src="scripts/text_extraction.js"></script> -->
+    <script src="scripts/text_extraction.js"></script>
 
     <!-- Dataset scripts -->
     <!-- <script src="data/categories.js"></script> -->

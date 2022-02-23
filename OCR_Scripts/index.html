@@ -15,6 +15,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/ml-classify-text@2.0.0/lib/index.js"></script>
 
+    <script src="https://unpkg.com/extract-colors"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
     <div class="container">
         <p id="text"></p> <br>
         <p id="classified-text"></p>
-        <h3 id="hero-text">I plant trees</h3>
+        <h3 id="hero-text">crypto</h3>
         <a onclick="classifyText()" class="btn btn-primary">Do the Math</a>
     </div>
 
@@ -33,13 +35,16 @@
         crossorigin="anonymous"></script>
     
     <!-- Text extraction scripts -->
-    <script src="scripts/text_extraction.js"></script>
+    <!-- <script src="scripts/text_extraction.js"></script> -->
 
     <!-- Dataset scripts -->
     <!-- <script src="data/categories.js"></script> -->
 
     <!-- Text classification lib -->
     <script src="scripts/classification.js"></script>
+
+    <!-- Color extraction -->
+    <!-- <script type="module" src="scripts/color_extraction.js"></script> -->
 
 </body>
 </html>

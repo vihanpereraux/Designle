@@ -1,10 +1,33 @@
 function classifyText()
 {
-    // classifier instance 
-    const classifier = new Classifier();
+
+    let predictionText = document.getElementById("hero-text").textContent;
+
+    var classifier;
+    if (predictionText == 'crypto') 
+    {
+        // classifier instance 
+        classifier = new Classifier({
+            nGramMin: 2,
+            nGramMax: 2
+        });
+    }
+
+    if (predictionText == 'cryptozz') 
+    {
+        // classifier instance 
+        classifier = new Classifier({
+            nGramMin: 4,
+            nGramMax: 4
+        });
+    }
+
+    let tokens = classifier.tokenize('I really dont like it')
+
+    console.log(tokens)
 
     // plant based dataset
-    let plantation = 
+    let plants = 
     [
         'tree',
         'plant',
@@ -12,24 +35,51 @@ function classifyText()
         'seeds',
         'green',
         'plantation',
-        'garden'
+        'garden',
+        'I plant'
     ]
     
     // negative dataset
-    let negative = 
+    let education = 
     [
-        'This is really bad',
-        'I hate it with a passion',
-        'Just terrible!',
+        'lessons',
+        'learn',
+        'books',
+        'tutorials',
+        'books prices',
+    ]
+
+    let clothes = 
+    [
+        'dennim',
+        'shirt',
+        'clothes',
+        'wear',
+        'classy',
+    ]
+
+    let crypto = 
+    [
+        'bitcoin',
+        'etherium',
+        'nft',
+        'generative',
+        'blockchain',
+        'I love',
     ]
 
     // training data
-    classifier.train(plantation, 'plantation');
-    classifier.train(negative, 'negative');
+    classifier.train(plants, 'plantation');
+    classifier.train(education, 'education');
+    classifier.train(clothes, 'clothes');
+    classifier.train(crypto, 'crypto');
 
     // getting the un-prediction text
-    let predictionText = document.getElementById("hero-text").textContent;
-    let predictions = classifier.predict(String(predictionText));
+    
+    let predictions = classifier.predict('I love bitcoin money');
+
+    let model = classifier.model;
+    console.log(model.serialize());
  
     // prediction starts
     if (predictions.length) 

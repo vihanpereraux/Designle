@@ -6,11 +6,11 @@ function imgFunction(event)
     
     // setting the url
 	outputUrl = URL.createObjectURL(event.target.files[0]);
+    //document.getElementById('output').src = outputUrl;
 
     // calling the OCR function
     extractText(outputUrl);
 }
-
 
 
 // OCR process starts from here
@@ -31,11 +31,12 @@ function extractText(imageUrl)
 }
 
 
-
+// Pre processing extracted data
 function analyzingData(text)
 {
     var extractedText = text;
-    document.getElementById("text").innerHTML = extractedText;
+    var cleanedText = [];
+    
     console.log(extractedText);
 
     // extracted text to an array
@@ -47,19 +48,31 @@ function analyzingData(text)
 
     // element storing array
     let randomNumbers = [];
-    let selectedTextArray = [];
     
-    for (let i = 0; i < 5; i++) 
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+    for (let i = 0; i < textArray.length; i++) 
     {
-        let randomNumber = Math.floor(Math.random() * textArray.length) + 1;
-        // preventing number repitition
-        while (randomNumbers.includes(randomNumber)) 
+        if ( !format.test(textArray[i]) ) 
         {
-            randomNumber = Math.floor(Math.random() * textArray.length) + 1;
+            cleanedText.push(textArray[i].replace(/(\r\n|\n|\r)/gm, " "));
         }
-        randomNumbers.push(randomNumber);
-        
-        // saving selected word in selectedTextArray[]
-        console.log(textArray[randomNumbers[i]]);       
     }
+
+    console.log(cleanedText);
+
+    
+    // for (let i = 0; i < 5; i++) 
+    // {
+    //     let randomNumber = Math.floor(Math.random() * textArray.length) + 1;
+    //     // preventing number repitition
+    //     while (randomNumbers.includes(randomNumber)) 
+    //     {
+    //         randomNumber = Math.floor(Math.random() * textArray.length) + 1;
+    //     }
+    //     randomNumbers.push(randomNumber);
+        
+    //     // saving selected word in selectedTextArray[]
+    //     console.log(textArray[randomNumbers[i]]);       
+    // }
 }

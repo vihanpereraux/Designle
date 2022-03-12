@@ -13,8 +13,6 @@ function classifyText()
         });
     }
 
-    //console.log(tokens)
-
     // plant based dataset
     let plantation = 
     [
@@ -92,7 +90,7 @@ function classifyText()
 
     // getting the un-prediction text
     
-    let predictions = classifier.predict('plant');
+    let predictions = classifier.predict('plants');
 
     let model = classifier.model;
     console.log(model.serialize());

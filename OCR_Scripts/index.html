@@ -10,6 +10,8 @@
         rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
         crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.css">
+
     <!-- OCR js lib -->
     <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 
@@ -20,6 +22,7 @@
 </head>
 <body>
 
+    <!-- Image upload section -->
     <div class="container">
         <p id="text"></p> <br>
         <p id="classified-text"></p>
@@ -35,6 +38,25 @@
         <p>
             <img id="output" width="200" />
         </p>
+    </div>
+
+    <!-- Testing cropper js -->
+    <div class="container">
+
+        <div class="form-group">
+            <label for="crop-image">Crop your image</label> <br>
+            <input type="file"  accept="image/*" name="crop-image" id="crop-image">
+        </div>
+
+        <div class="box-2">
+            <div class="result">
+                
+            </div>
+        </div>
+
+        <div class="box-2 cropped-result hide">
+            <img class="cropped" src="" alt="">
+        </div>
 
     </div>
 
@@ -42,7 +64,12 @@
     <!-- Bootstrap JS v5 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/2.0.0-alpha.2/cropper.min.js"></script>
     
     <!-- Text extraction scripts -->
     <script src="scripts/text_extraction.js"></script>

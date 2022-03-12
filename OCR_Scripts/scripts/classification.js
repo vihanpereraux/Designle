@@ -8,45 +8,61 @@ function classifyText()
     {
         // classifier instance 
         classifier = new Classifier({
-            nGramMin: 2,
-            nGramMax: 2
+            nGramMin: 1,
+            nGramMax: 1
         });
     }
 
-    if (predictionText == 'cryptozz') 
-    {
-        // classifier instance 
-        classifier = new Classifier({
-            nGramMin: 4,
-            nGramMax: 4
-        });
-    }
-
-    let tokens = classifier.tokenize('I really dont like it')
-
-    console.log(tokens)
+    //console.log(tokens)
 
     // plant based dataset
-    let plants = 
+    let plantation = 
     [
-        'tree',
-        'plant',
-        'coconut',
-        'seeds',
-        'green',
-        'plantation',
-        'garden',
-        'I plant'
+        'The easiest way to make healthy life by buying favourite plants', 
+        'Look natural with plantings',
+        'Loved by gardens and trusted by gardners',
+        'Save the earth with plants',
+        'Growing beautiful plants at home has never been easier',
+        'Delivering plants with hapiness',
+        'One with nature',
+        'Plants make life better',
+        'Proper greening and smart solutions',
+        'Bring calm to your place with interior plants',
+        'Healthy plants garden and home',
+        'We take care of your garden and flowers',
+        'Plants for your interior',
+        'Plant makes everything better',
+        'Decorate your garden with plants',
+        'Home is where my plants are',
+        'Shop rare plants with plants collection',
+        'Drops on leaves',
+        'Create your urben jungle',
+        'Plants and gardening for everyone'
     ]
     
     // negative dataset
     let education = 
     [
-        'lessons',
-        'learn',
-        'books',
-        'tutorials',
-        'books prices',
+        'learning makes me happy',
+        'getting you where you want to study',
+        'a way to improve your skills',
+        'online education is now easy',
+        'build better assignments',
+        'schools are closed learning is open',
+        'better future for your kids',
+        'study from home with experts',
+        'welcome to private university',
+        'grow your skills to advance your career path',
+        'the best online course',
+        'a new way to improve your skills',
+        'improve your skills faster',
+        'you can learn anything',
+        'your mobile education',
+        'education', 
+        'tutorials', 
+        'courses', 
+        'course',
+        'new way of learning'
     ]
 
     let clothes = 
@@ -65,18 +81,18 @@ function classifyText()
         'nft',
         'generative',
         'blockchain',
-        'I love',
+        'You love fff ttt',
     ]
 
     // training data
-    classifier.train(plants, 'plantation');
+    classifier.train(plantation, 'plantation');
     classifier.train(education, 'education');
     classifier.train(clothes, 'clothes');
     classifier.train(crypto, 'crypto');
 
     // getting the un-prediction text
     
-    let predictions = classifier.predict('I love bitcoin money');
+    let predictions = classifier.predict('plant');
 
     let model = classifier.model;
     console.log(model.serialize());

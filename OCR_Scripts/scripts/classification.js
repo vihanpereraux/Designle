@@ -1,19 +1,19 @@
+function loadData()
+{
+    var savedPhrased = JSON.parse(localStorage.getItem('cleanedText'));
+    console.log(savedPhrased);
+}
+
+
 function classifyText()
 {
+    // classifier instance 
+    var classifier = new Classifier ({
+        nGramMin: 1,
+        nGramMax: 1
+    });
 
-    let predictionText = document.getElementById("hero-text").textContent;
-
-    var classifier;
-    if (predictionText == 'crypto') 
-    {
-        // classifier instance 
-        classifier = new Classifier({
-            nGramMin: 1,
-            nGramMax: 1
-        });
-    }
-
-    // plant based dataset
+    // plants/garden based word bag
     let plantation = 
     [
         'The easiest way to make healthy life by buying favourite plants', 
@@ -38,7 +38,7 @@ function classifyText()
         'Plants and gardening for everyone'
     ]
     
-    // negative dataset
+    // education/courses based word bag
     let education = 
     [
         'learning makes me happy',
@@ -63,6 +63,7 @@ function classifyText()
         'new way of learning'
     ]
 
+    // fashion/clothing based word bag
     let clothes = 
     [
         'dennim',
@@ -72,6 +73,7 @@ function classifyText()
         'classy',
     ]
 
+    // crypto currency based word bag
     let crypto = 
     [
         'bitcoin',
@@ -82,33 +84,29 @@ function classifyText()
         'You love fff ttt',
     ]
 
-    // training data
+    // train word bags according to the given configs
     classifier.train(plantation, 'plantation');
     classifier.train(education, 'education');
     classifier.train(clothes, 'clothes');
     classifier.train(crypto, 'crypto');
 
-    // getting the un-prediction text
-    
+    // predict saved phrases
     let predictions = classifier.predict('plants');
-
     let model = classifier.model;
-    console.log(model.serialize());
+    console.log(model.serialize()); // details of the model
  
     // prediction starts
     if (predictions.length) 
     {
-        predictions.forEach(prediction => 
+        predictions.forEach ( prediction => 
         {
             console.log(`${prediction.label} (${prediction.confidence})`);
-            
-            // display results in the page
-            document.getElementById("classified-text").innerHTML = 
-                prediction.label + " " + prediction.confidence;
         })
     } 
     else 
     {
         console.log('No predictions returned');
     }
+
+    loadData();
 }

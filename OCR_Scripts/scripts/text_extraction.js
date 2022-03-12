@@ -6,7 +6,6 @@ function imgFunction(event)
     
     // setting the url
 	outputUrl = URL.createObjectURL(event.target.files[0]);
-    //document.getElementById('output').src = outputUrl;
 
     // calling the OCR function
     extractText(outputUrl);
@@ -20,59 +19,46 @@ function extractText(imageUrl)
     ( 
         imageUrl,
         'eng',
-        { logger: message => console.log( message ) }
+        { logger: extractionStatus => console.log( extractionStatus ) }
     )
     .then
     (({ data: { text } }) => 
         {
-            analyzingData(text);
+            processData(text);
         }
     )
 }
 
 
 // Pre processing extracted data
-function analyzingData(text)
-{
-    var extractedText = text;
-    var cleanedText = [];
-    
-    console.log(extractedText);
+// an array to store cleaned data
+var cleanedText = [];
+
+function processData(extractedText)
+{   
+    console.log(extractedText); // for checking purpsoe
 
     // extracted text to an array
     var textArray = extractedText.split(" ");
-    console.log(textArray);
-
-    // length of the extracted text
-    console.log(textArray.length);
-
-    // element storing array
-    let randomNumbers = [];
+    console.log(textArray); // for checking purpsoe
     
-    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    // regex to clean the data
+    var specialCharacters = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
+    // regex to filter line breakers
+    var lineBreakers = /(\r\n|\n|\r)/gm;
+
+    // filling cleanedText[] with filtered data
     for (let i = 0; i < textArray.length; i++) 
     {
-        if ( !format.test(textArray[i]) ) 
+        if (!specialCharacters.test(textArray[i])) 
         {
-            cleanedText.push(textArray[i].replace(/(\r\n|\n|\r)/gm, " "));
+            cleanedText.push(textArray[i].replace(lineBreakers, " "));
         }
     }
 
     console.log(cleanedText);
-
-    
-    // for (let i = 0; i < 5; i++) 
-    // {
-    //     let randomNumber = Math.floor(Math.random() * textArray.length) + 1;
-    //     // preventing number repitition
-    //     while (randomNumbers.includes(randomNumber)) 
-    //     {
-    //         randomNumber = Math.floor(Math.random() * textArray.length) + 1;
-    //     }
-    //     randomNumbers.push(randomNumber);
-        
-    //     // saving selected word in selectedTextArray[]
-    //     console.log(textArray[randomNumbers[i]]);       
-    // }
+    // saving cleaned data in local storage
+    localStorage.setItem("cleanedText", JSON.stringify(cleanedText));
 }
+

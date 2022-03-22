@@ -13,7 +13,7 @@ image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 # Resizing and pre-processing the image
 def preprocess(raw):
-    image = cv2.resize(raw, (900, 600), interpolation = cv2.INTER_AREA)                                          
+    image = cv2.resize(raw, (900, 600), interpolation = cv2.INTER_NEAREST)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3)
     return image
 
@@ -36,7 +36,7 @@ def analyze(img):
     plt.figure(figsize = (12, 8))
     plt.pie(counts.values(), labels = hex_colors, colors = hex_colors)
 
-    plt.savefig("results/my_pie.png")
+    plt.savefig("results/my_pie2.png")
     print("Found the following colors:\n")
     for color in hex_colors:
       print(color)

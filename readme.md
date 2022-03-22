@@ -1,3 +1,3 @@
-## Installation
+## What is Designle ?
 
-This is a browser based UX Suggetions tool for identifying UX defects in UI designs done by UI/UX designers.
+This project is a browser based color defects identification tool for identifying UX defects in UI designs done by beginner level UI/UX designers. 

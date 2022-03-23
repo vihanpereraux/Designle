@@ -14,7 +14,7 @@ image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 # Resizing and pre-processing the image
 def preprocess(raw):
     image = cv2.resize(raw, (900, 600), interpolation = cv2.INTER_NEAREST)                                          
-    image = image.reshape(image.shape[0]*image.shape[1], 3)
+    image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
     return image
 
 # Converting rgb to hex

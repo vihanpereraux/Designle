@@ -5,18 +5,22 @@ from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 
 
-# Red color
-red_color = AdobeRGBColor(225, 0, 0, is_upscaled=False)
+red_color = AdobeRGBColor(225, 0, 0) # red color
 
-# Maroon color
-blue_color = AdobeRGBColor(0, 0, 225, is_upscaled=False)
+lightblue_color = AdobeRGBColor(35, 195, 225) # light-blue color
+pink_color = AdobeRGBColor(240, 35, 255) # pink color
 
 # Convert from RGB to Lab Color Space
 color1_lab = convert_color(red_color, LabColor)
-color2_lab = convert_color(blue_color, LabColor)
+color2_lab = convert_color(pink_color, LabColor)
 
-delta_e = delta_e_cie2000(color1_lab, color2_lab);
-print(delta_e)
+print("-----------------------------------------------------------")
+print("a channel of the red color " , color1_lab.lab_a)
+print("a channel of the pink color" , color2_lab.lab_a)
+print("-----------------------------------------------------------")
+
+# delta_e = delta_e_cie2000(color1_lab, color2_lab);
+# print(delta_e)
 
 def image_manipulation():
     original_image = cv2.imread('images/Yellow_Image.jpg')

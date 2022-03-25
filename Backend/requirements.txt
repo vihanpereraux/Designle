@@ -1,1 +1,1 @@
-pip install opencv-python scikit-learn numpy matplotlib colormath
+pip install opencv-python scikit-learn numpy matplotlib colormath tinydb

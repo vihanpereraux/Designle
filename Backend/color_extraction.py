@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 from tinydb import TinyDB, Query # -> document oriented db
-db = TinyDB('colors.json')
+db = TinyDB('database/colors.json')
 
 
 # Importing and color correction process

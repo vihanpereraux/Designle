@@ -1,1 +1,7 @@
-{"_default": {"1": {"name": "Vihan", "age": "22"}, "2": {"name": "Dilan", "age": "29"}, "3": {"name": "Yvonne", "age": "55"}, "4": {"name": "Sarath", "age": "61"}}}
+{
+  "_default": {
+    "1": { "Red color channel": 146.42805146569808 },
+    "2": { "Red color channel": 68.64221927500253 },
+    "3": { "Red color channel": 184.41776814590938 }
+  }
+}

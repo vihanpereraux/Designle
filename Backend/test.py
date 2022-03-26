@@ -6,16 +6,15 @@ from colormath.color_diff import delta_e_cie2000
 
 
 red_color = AdobeRGBColor(225, 0, 0) # red color
-
 lightblue_color = AdobeRGBColor(35, 195, 225) # light-blue color
-pink_color = AdobeRGBColor(240, 35, 255) # pink color
+pink_color = AdobeRGBColor(238, 0, 255) # pink color
 
 # Convert from RGB to Lab Color Space
 color1_lab = convert_color(red_color, LabColor)
 color2_lab = convert_color(pink_color, LabColor)
 
 print("-----------------------------------------------------------")
-print("a channel of the red color " , color1_lab)
+print("a channel of the red color " , color1_lab.lab_a)
 print("a channel of the pink color" , color2_lab.lab_a)
 print("-----------------------------------------------------------")
 

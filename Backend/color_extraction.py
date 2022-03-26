@@ -2,8 +2,8 @@ from collections import Counter
 from itertools import count
 from turtle import pen
 from sklearn.cluster import KMeans
-from matplotlib import colors
-import matplotlib.pyplot as plt
+# from matplotlib import colors
+# import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 from tinydb import TinyDB, Query # -> document oriented db

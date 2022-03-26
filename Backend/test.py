@@ -15,7 +15,7 @@ color1_lab = convert_color(red_color, LabColor)
 color2_lab = convert_color(pink_color, LabColor)
 
 print("-----------------------------------------------------------")
-print("a channel of the red color " , color1_lab.lab_a)
+print("a channel of the red color " , color1_lab)
 print("a channel of the pink color" , color2_lab.lab_a)
 print("-----------------------------------------------------------")
 

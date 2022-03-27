@@ -1,11 +1,5 @@
 from collections import Counter
-from itertools import count
-import py_compile
-from turtle import pen
 from sklearn.cluster import KMeans
-# from matplotlib import colors
-# import matplotlib.pyplot as plt
-import numpy as np
 import cv2
 import math
 
@@ -39,7 +33,6 @@ def rgb_to_hex(rgb_color):
 
 # Analyzing the image
 def extract_colors(img):
-
     clf = KMeans(n_clusters = 3)
     color_labels = clf.fit_predict(img) # cluster collection -> lots of 0s,1s and 2s
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters
@@ -55,11 +48,11 @@ def extract_colors(img):
         rgb_color = sRGBColor(color[0], color[1], color[2])
         LAB_colors.append(convert_color(rgb_color, LabColor))
 
+    print(LAB_colors)
 
 
 # color stats relates to the domain
 def color_stats():
-
     # inappropriate colors for educational websites
     red_rgb2lab = convert_color(sRGBColor(225, 0, 0), LabColor) # 01 -> RED color
     red_a_channel = int(math.sqrt(red_rgb2lab.lab_a))
@@ -77,7 +70,6 @@ def color_stats():
     # comfortable colors for educational websites
     white_rgb2lab = convert_color(sRGBColor(255, 255, 255), LabColor) # 05 -> WHITE color
     white_l_channel = int(math.sqrt(white_rgb2lab.lab_l))
-
 
 
 preprocessed_image = preprocess(image)
@@ -113,3 +105,22 @@ extract_colors(preprocessed_image)
     
 #     print(extracted_rgb_data)
 
+
+
+# from collections import Counter
+# from itertools import count
+# import py_compile
+# from turtle import pen
+# from sklearn.cluster import KMeans
+# from matplotlib import colors
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import cv2
+# import math
+
+# from tinydb import TinyDB, Query # -> document oriented db
+# db = TinyDB('database/colors.json')
+
+# from colormath.color_objects import sRGBColor, LabColor
+# from colormath.color_conversions import convert_color
+# from colormath.color_diff import delta_e_cie2000

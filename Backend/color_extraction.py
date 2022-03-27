@@ -11,19 +11,19 @@ from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 
 
-# Importing and color correction process
+# importing and color correction process
 image = cv2.imread('images/Design01.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 
-# Resizing and pre-processing the image
+# resizing and pre-processing the image
 def preprocess(raw):
     image = cv2.resize(raw, (900, 600), interpolation = cv2.INTER_LINEAR)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
     return image
 
 
-# Converting rgb to hex
+# converting rgb to hex
 def rgb_to_hex(rgb_color):
     hex_color = "#"
     for i in rgb_color:
@@ -31,7 +31,7 @@ def rgb_to_hex(rgb_color):
     return hex_color
 
 
-# Analyzing the image
+# analyzing the image
 def extract_colors(img):
     clf = KMeans(n_clusters = 3)
     color_labels = clf.fit_predict(img) # cluster collection -> lots of 0s,1s and 2s

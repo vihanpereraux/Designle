@@ -1,4 +1,3 @@
-from doctest import FAIL_FAST
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -26,7 +25,7 @@ if (df[columns].isnull().values.any()) == False:
     # convert the text to a matrix
     cm = CountVectorizer().fit_transform(df['importatant_features'])
 
-    # fetting cosine similarity
+    # getting cosine similarity
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
@@ -49,4 +48,6 @@ if (df[columns].isnull().values.any()) == False:
         k = k + 1 ;
         if k > 10:
             break
+
+
   

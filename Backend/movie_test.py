@@ -5,11 +5,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 
 # Getting the data
-df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252')
+df = pd.read_csv('data/orange_n_purple_suggestions.csv', encoding='cp1252')
 # print(df.head(11));
 
 # list of important columns
-columns = ['ux_suggestion', 'usage', 'category']
+columns = ['ux_suggestion', 'color_usage']
+# print(df[columns].isnull().values.any())
 
 
 # checking whether important columns are filled or not
@@ -17,13 +18,13 @@ if (df[columns].isnull().values.any()) == False:
     def get_features(data):
         importatant_features = []
         for i in range(0, data.shape[0]):
-            importatant_features.append(data['ux_suggestion'][i] + ' ' + data['usage'][i] + ' ' + data['category'][i])
+            importatant_features.append(data['design_usage'][i] + ' ' + data['color_category'][i] + ' ' + data['color_usage'][i] + ' ' + data['ux_suggestion'][i])
 
         return importatant_features
     
     # new coloumn to hold the combined strings
     df['importatant_features'] = get_features(df)
-    # print(df.head(3));
+    print(df.head(3));
 
     # convert the text to a matrix
     cm = CountVectorizer().fit_transform(df['importatant_features'])
@@ -32,10 +33,10 @@ if (df[columns].isnull().values.any()) == False:
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    suggestion = 'Red always makes you feel that you are running out of time and rushes you to take the next action.'
+    suggestion = 'Orange wordings'
     
     # getting the releavnt movie ID
-    suggestion_id = df[df.ux_suggestion == suggestion]['suggestion_id'].values[0]
+    suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]
     
     # creates a list of enums
     scores = list(enumerate(cs[suggestion_id]))
@@ -44,14 +45,17 @@ if (df[columns].isnull().values.any()) == False:
     sorted_scores = sorted(scores, key = lambda x:x[1], reverse = True)
     # sorted_scores = sorted_scores[1:]
 
-    # k = 1
+    k = 1
     for suggestion in sorted_scores:
-        ux_suggestions = df[df.suggestion_id == suggestion[0]]['ux_suggestion'].values[0]
-        print(sorted_scores)
-        print('---------------------------------------------------------------------------')
+        ux_suggestions = df[df.suggestion_id == suggestion[0]]['design_usage'].values[0]
+        if suggestion[1] > 0.5:
+            print(ux_suggestions , suggestion[1] , suggestion[0])
+            print('---------------------------------------------------------------------------')
         # k = k + 1 ;
-        # if k > 10:
+        # if k > 15:
         #     break
+
+    print(sorted_scores)
 
 
   

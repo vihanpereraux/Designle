@@ -2,15 +2,19 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+import sys
 
 
 # Getting the data
-df = pd.read_csv('data/color_scheme_01.csv', encoding='cp1252')
-# print(df.head(11));
+# df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252', skiprows=0, nrows=70)
+df = pd.read_csv('data/color_scheme_02.csv', encoding='cp1252')
+# print(df.head(1));
 
 # list of important columns
-columns = ['ux_suggestion', 'color_usage']
+columns = ['ux_suggestion', 'color_usage', 'color_category', 'design_usage']
+# print(df['design_usage'][0])
 # print(df[columns].isnull().values.any())
+# sys.exit()
 
 
 # checking whether important columns are filled or not
@@ -33,7 +37,7 @@ if (df[columns].isnull().values.any()) == False:
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    suggestion = 'Orange wordings'
+    suggestion = 'Yellow ui components'
     
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]
@@ -50,7 +54,7 @@ if (df[columns].isnull().values.any()) == False:
     for suggestion in sorted_scores:
         if k < 6:
             print('Suggetion - ' , df[df.suggestion_id == suggestion[0]]['design_usage'].values[0])
-            print('Similarity score - ' , suggestion[1]*100,'%')
+            print('Similarity score - ' , suggestion[1]*100,'%', suggestion[0])
             print('--------------------------------------------------------------------------')
             k = k + 1
 

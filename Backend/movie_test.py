@@ -33,7 +33,7 @@ if (df[columns].isnull().values.any()) == False:
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    suggestion = 'Red wordings'
+    suggestion = 'Orange wordings'
     
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]
@@ -45,17 +45,14 @@ if (df[columns].isnull().values.any()) == False:
     sorted_scores = sorted(scores, key = lambda x:x[1], reverse = True)
     # sorted_scores = sorted_scores[1:]
 
-    # k = 1
-    # for suggestion in sorted_scores:
-    #     ux_suggestions = df[df.suggestion_id == suggestion[0]]['design_usage'].values[0]
-    #     if suggestion[1] > 0.5:
-    #         print(ux_suggestions , suggestion[1] , suggestion[0])
-    #         print('---------------------------------------------------------------------------')
-    #     # k = k + 1 ;
-    #     # if k > 15:
-    #     #     break
 
-    print(sorted_scores)
+    k = 1 
+    for suggestion in sorted_scores:
+        if k < 6:
+            print('Suggetion - ' , df[df.suggestion_id == suggestion[0]]['design_usage'].values[0])
+            print('Similarity score - ' , suggestion[1]*100,'%')
+            print('--------------------------------------------------------------------------')
+            k = k + 1
 
 
   

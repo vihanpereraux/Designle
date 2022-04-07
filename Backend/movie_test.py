@@ -7,7 +7,7 @@ import sys
 
 # Getting the data
 # df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252', skiprows=0, nrows=70)
-df = pd.read_csv('data/color_scheme_02.csv', encoding='cp1252')
+df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252')
 # print(df.head(1));
 
 # list of important columns
@@ -37,7 +37,7 @@ if (df[columns].isnull().values.any()) == False:
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    suggestion = 'Yellow ui components'
+    suggestion = 'Orange ui components'
     
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]

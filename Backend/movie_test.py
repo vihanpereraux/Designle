@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 
 # Getting the data
-df = pd.read_csv('data/orange_n_purple_suggestions.csv', encoding='cp1252')
+df = pd.read_csv('data/color_scheme_01.csv', encoding='cp1252')
 # print(df.head(11));
 
 # list of important columns

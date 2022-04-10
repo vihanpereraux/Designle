@@ -5,24 +5,67 @@ from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 import math
+# from sklearn.metrics import check_scoring
 
 
 red_color = sRGBColor(255, 0, 0) # red color -> a channel 80
-orange_color = sRGBColor(255, 142, 225) # orange color -> a channel 67
-purple_color = sRGBColor(193, 142, 219) # purple color -> a channel 53
+orange_color = sRGBColor(255, 142, 0) # orange color -> a channel 55
+purple_color = sRGBColor(193, 0, 219) # purple color -> a channel 53
 
-# Convert from RGB to Lab Color Space
-color1_lab = convert_color(purple_color, LabColor)
-# color2_lab = convert_color(pink_color, LabColor)
+def color_section_01(color) :
+    color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
 
-if color1_lab.lab_a > 0 :
-    print("-----------------------------------------------------------")
-    print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
-    # print("a channel of the pink color" , color2_lab.lab_a)
-    print("-----------------------------------------------------------")
+    if color1_lab.lab_a > 0 :
+        print("-----------------------------------------------------------")
+        print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
+        if color1_lab.lab_b < 0 :
+            print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
+        else :
+            print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
+            print("-----------------------------------------------------------")
 
-# delta_e = delta_e_cie2000(color1_lab, color2_lab);
-# print(delta_e)
+# color_section_01(red_color)
+
+
+yellow_color = sRGBColor(255, 252, 0) 
+green_color = sRGBColor(12, 207, 0)
+blue_color = sRGBColor(0, 0, 255) 
+checking_color = sRGBColor(195, 243, 192)
+
+def color_section_02(color) :
+    color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
+
+    if color1_lab.lab_a < 0 :
+        print("-----------------------------------------------------------")
+        print("a channel of the red color " , math.sqrt( (color1_lab.lab_a*-1) )*-1 )
+    else :
+        print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
+
+    if color1_lab.lab_b < 0 :
+        print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
+    else :
+        print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
+        print("-----------------------------------------------------------")
+
+color_section_02(checking_color)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def image_manipulation():
     original_image = cv2.imread('images/Yellow_Image.jpg')

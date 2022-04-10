@@ -7,3 +7,9 @@ This project is a browser based color defects identification tool for identifyin
 Color scheme 01 - Red, Purple, Orange
 Color scheme 02 - Blue, Green, Yellow
 Color scheme 03 - White, Black, Brown
+
+## Color Ranges - Category 01
+80 < : Bright red
+56 - 80 : Orange
+50 - 56 : Purple
+25 - 50 : Red shades

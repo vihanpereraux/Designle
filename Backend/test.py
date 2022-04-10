@@ -8,9 +8,9 @@ import math
 # from sklearn.metrics import check_scoring
 
 
-red_color = sRGBColor(255, 0, 0) # red color -> a channel 80
-orange_color = sRGBColor(255, 142, 0) # orange color -> a channel 55
-purple_color = sRGBColor(193, 0, 219) # purple color -> a channel 53
+red_color = sRGBColor(255, 0, 0) 
+orange_color = sRGBColor(255, 142, 0) 
+purple_color = sRGBColor(193, 0, 219) 
 
 def color_section_01(color) :
     color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space

@@ -1,7 +1,7 @@
 1. Image pre procerssing -- Done
 2. Image pre procerssing technique improvement
-3. Color extraction techniques
+3. Color extraction techniques -- Done
 4. kmeans algorithms
-5. LAB color claculations
-6. Danger zone and comfort zone identification
-7. Recommendation algorithms
+5. LAB color claculations -- Done
+6. Danger zone and comfort zone identification -- Done
+7. Recommendation algorithms -- Done

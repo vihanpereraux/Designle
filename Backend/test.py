@@ -30,7 +30,7 @@ def color_section_01(color) :
 yellow_color = sRGBColor(255, 252, 0) 
 green_color = sRGBColor(12, 207, 0)
 blue_color = sRGBColor(0, 0, 255) 
-checking_color = sRGBColor(195, 243, 192)
+checking_color = sRGBColor(40, 157, 204)
 
 def color_section_02(color) :
     color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space

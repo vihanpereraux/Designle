@@ -46,9 +46,10 @@ def extract_colors(img):
     LAB_colors = []
     for color in extracted_rgb_colors:
         rgb_color = sRGBColor(color[0], color[1], color[2])
-        LAB_colors.append(convert_color(rgb_color, LabColor))
+        # LAB_colors.append(convert_color(rgb_color, LabColor))
+        print(rgb_to_hex(color))
 
-    print(LAB_colors)
+    # print(LAB_colors)
 
 
 # color stats relates to the domain

@@ -39,12 +39,12 @@ def extract_colors(img):
     counts = Counter(color_labels) # amounts of three cluster collections
 
     # adding RGB values into an array
-    extracted_rgb_colors = []
+    extracted_colors = []
     for i in range(3):
-        extracted_rgb_colors.append(center_colors[i])
+        extracted_colors.append(center_colors[i])
 
     LAB_colors = []
-    for color in extracted_rgb_colors:
+    for color in extracted_colors:
         rgb_color = sRGBColor(color[0], color[1], color[2])
         # LAB_colors.append(convert_color(rgb_color, LabColor))
         print(rgb_to_hex(color))

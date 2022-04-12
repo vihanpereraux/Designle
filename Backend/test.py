@@ -5,6 +5,8 @@ from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
 from colormath.color_diff import delta_e_cie2000
 import math
+
+# from Backend.color_extraction import extract_colors
 # from sklearn.metrics import check_scoring
 
 
@@ -16,13 +18,15 @@ def color_section_01(color) :
     color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
 
     if color1_lab.lab_a > 0 :
-        print("-----------------------------------------------------------")
         print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
-        if color1_lab.lab_b < 0 :
-            print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
-        else :
-            print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
-            print("-----------------------------------------------------------")
+    else :
+        print("a channel of the red color " , math.sqrt( (color1_lab.lab_a*-1) )*-1 )
+    
+    if color1_lab.lab_b < 0 :
+        print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
+    else :
+        print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
+        print("-----------------------------------------------------------")
 
 # color_section_01(red_color)
 
@@ -36,7 +40,6 @@ def color_section_02(color) :
     color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
 
     if color1_lab.lab_a < 0 :
-        print("-----------------------------------------------------------")
         print("a channel of the red color " , math.sqrt( (color1_lab.lab_a*-1) )*-1 )
     else :
         print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
@@ -45,12 +48,27 @@ def color_section_02(color) :
         print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
     else :
         print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
-        print("-----------------------------------------------------------")
 
-color_section_02(checking_color)
-
+# color_section_02(green_color)
 
 
+def color_sections(extracted_colors) :
+    # section 01 - checking for red, purple or orange shades
+    sRGB_versions = []
+    for color in extracted_colors :
+        sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
+
+    color_1_LAB = convert_color(sRGB_versions[0], LabColor)
+    color_2_LAB = convert_color(sRGB_versions[1], LabColor)
+    color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a), 0))
+    color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b), 0))
+
+    if 70 <= color_1_LAB_achannel <= 80 and color_1_LAB_bchannel >= 70 : 
+        print("Redish !")
+
+
+extracted_colors = [ (255, 0, 0), (12, 207, 0) ]
+color_sections(extracted_colors) 
 
 
 

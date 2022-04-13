@@ -6,6 +6,7 @@ from tinydb import TinyDB, Query # -> document oriented db
 db = TinyDB('database/colors.json')
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
+from ux_suggestions import match_ux_suggestions
 
 
 # importing and color correction process
@@ -110,6 +111,7 @@ def identify_color_ranges(channel_contribution):
 
     for i in range(3):
         print(color_features[i])
+    print(match_ux_suggestions())
 
 
 preprocessed_image = preprocess(image)

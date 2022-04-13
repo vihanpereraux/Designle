@@ -1,19 +1,15 @@
 from collections import Counter
-import sys
 from sklearn.cluster import KMeans
 import cv2
 import math
-
 from tinydb import TinyDB, Query # -> document oriented db
 db = TinyDB('database/colors.json')
-
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
-from colormath.color_diff import delta_e_cie2000
 
 
 # importing and color correction process
-image = cv2.imread('images/Design01.png')
+image = cv2.imread('images/Design03.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 
@@ -47,9 +43,10 @@ def extract_colors(img):
     calculate_channel_contribution(extracted_colors)
 
 
-# color stats relates to the domain
+# color channel calculations relate to the domain
 def calculate_channel_contribution(extracted_colors):
     sRGB_versions = []    
+    channel_contribution = []
     for color in extracted_colors :
         sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
 
@@ -66,19 +63,58 @@ def calculate_channel_contribution(extracted_colors):
         else :
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
-        channel_contribution = []
         channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
     
-    print(channel_contribution)
+    # print(channel_contribution)
+    identify_color_ranges(channel_contribution)
 
 
-# 
-# def identify_color_features():
+# Identifying color ranges of extracted colors 
+def identify_color_ranges(channel_contribution):
+    color_features = []
+
+    # color sceheme 01
+    for feature in channel_contribution :
+        if 70 <= feature[0] <= 80 and feature[1] >= 70 : 
+            color_features.append("Red")
+        if 30 <= feature[0] <= 69 and 0 <= feature[1] <= 70 :
+            color_features.append("Red shades")
+
+        if 80 <= feature[0] and -80 <= feature[1] <= -10 : 
+            color_features.append("Purple")
+        if 40 <= feature[0] <= 80 and -80 <= feature[1] <= -10 : 
+            color_features.append("Purple shades")
+        
+        if 30 <= feature[0] <= 70 and 40 <= feature[1] : 
+            color_features.append("Orange")
+        if 20 <= feature[0] <= 40 and 30 <= feature[1] : 
+            color_features.append("Orange shades")
+
+        # color sceheme 02
+        if 60 <= feature[1] <= 100 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
+            color_features.append("Yellow")
+        if 0 <= feature[1] <= 60 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
+            color_features.append("Yellow shades")
+
+        if 0 <= feature[1] <= 100 and -100 <= feature[0] <= -50 : 
+            color_features.append("Green")
+        if 0 <= feature[1] <= 100 and -50 <= feature[0] <= 0 : 
+            color_features.append("Green shades")
+
+        if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
+            color_features.append("Blue")
+        if -50 <= feature[1] <= 0 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
+            color_features.append("Blue shades")
+        if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
+            color_features.append("Blue shades")
+
+    for i in range(3):
+        print(color_features[i])
 
 
-# preprocessed_image = preprocess(image)
-# extract_colors(preprocessed_image)
-calculate_channel_contribution( [(255,0,0)] )
+preprocessed_image = preprocess(image)
+extract_colors(preprocessed_image)
+# calculate_channel_contribution( [(255, 0, 0), (131, 188, 118), (249, 216)] )
 
 
 

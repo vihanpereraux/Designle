@@ -53,7 +53,6 @@ def color_section_02(color) :
 
 
 def color_sections(extracted_colors) :
-    # section 01 - checking for red, purple or orange shades
     sRGB_versions = []
     for color in extracted_colors :
         sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
@@ -95,8 +94,21 @@ def color_sections(extracted_colors) :
     if 0 <= color_1_LAB_bchannel <= 60 and (-40 <= color_1_LAB_achannel <= 0 or 0 <= color_1_LAB_achannel <= 40) : 
         print("Yellow shades !")
 
+    if 0 <= color_1_LAB_bchannel <= 100 and -100 <= color_1_LAB_achannel <= -50 : 
+        print("Green !")
+    if 0 <= color_1_LAB_bchannel <= 100 and -50 <= color_1_LAB_achannel <= 0 : 
+        print("Green shades !")
 
-extracted_colors = [ (255, 255, 192), (12, 207, 0) ]
+    if -100 <= color_1_LAB_bchannel <= -50 and 60 <= color_1_LAB_achannel <= 100 : 
+        print("Blue !")
+    if -50 <= color_1_LAB_bchannel <= 0 and (0 <= color_1_LAB_achannel <= 60 or -60 <= color_1_LAB_achannel <= 0) : 
+        print("Blue shades !")
+    if -100 <= color_1_LAB_bchannel <= -50 and (0 <= color_1_LAB_achannel <= 60 or -60 <= color_1_LAB_achannel <= 0) : 
+        print("Blue shades !")
+    
+    print(int(round(math.sqrt(color_1_LAB.lab_l), 0)))
+
+extracted_colors = [ (131, 188, 118), (12, 207, 0) ]
 color_sections(extracted_colors) 
 
 

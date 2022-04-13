@@ -43,34 +43,48 @@ def extract_colors(img):
     for i in range(3):
         extracted_colors.append(center_colors[i])
 
-    LAB_colors = []
-    for color in extracted_colors:
-        rgb_color = sRGBColor(color[0], color[1], color[2])
-        # LAB_colors.append(convert_color(rgb_color, LabColor))
-        print(rgb_to_hex(color))
-
-    # print(LAB_colors)
+    calculate_channel_contribution(extracted_colors)
 
 
 # color stats relates to the domain
-def color_stats():
-    # inappropriate colors for educational websites
-    red_rgb2lab = convert_color(sRGBColor(225, 0, 0), LabColor) # 01 -> RED color
-    red_a_channel = int(math.sqrt(red_rgb2lab.lab_a))
-    red_l_channel = int(math.sqrt(red_rgb2lab.lab_l))
-    
-    green_rgb2lab = convert_color(sRGBColor(0, 255, 0), LabColor) # 02 -> GREEN color
-    green_a_channel = int(math.sqrt(green_rgb2lab.lab_a))
-    green_l_channel = int(math.sqrt(green_rgb2lab.lab_l))
-    
-    blue_rgb2lab = convert_color(sRGBColor(0, 255, 0), LabColor) # 03 -> BLUE color
-    blue_b_channel = int(math.sqrt(blue_rgb2lab.lab_b))
-    blue_l_channel = int(math.sqrt(blue_rgb2lab.lab_l))
+def calculate_channel_contribution(extracted_colors):
+    sRGB_versions = []    
+    for color in extracted_colors :
+        sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
+
+    color_1_LAB = convert_color(sRGB_versions[0], LabColor)
+    color_2_LAB = convert_color(sRGB_versions[1], LabColor)
+
+    if color_1_LAB.lab_a < 0 :
+        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a * -1), 0) * -1)
+    else :
+        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a), 0))
+
+    if color_1_LAB.lab_b < 0 :
+        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b * -1), 0) * -1)
+    else :
+        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b), 0))
+
+    for color in sRGB_versions :
+        color_LAB = convert_color(color, LabColor)
+
+        if color_LAB.lab_a < 0 :
+            color_LAB_achannel = int(round(math.sqrt(color_LAB.lab_a * -1), 0) * -1)
+        else :
+            color_LAB_achannel = int(round(math.sqrt(color_LAB.lab_a), 0))
+
+        if color_LAB.lab_b < 0 :
+            color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b * -1), 0) * -1)
+        else :
+            color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
+
+        channel_contribution = []
+        channel_contribution.append(color_LAB_achannel)
+        channel_contribution.append(color_LAB_bchannel)
 
 
-    # comfortable colors for educational websites
-    white_rgb2lab = convert_color(sRGBColor(255, 255, 255), LabColor) # 05 -> WHITE color
-    white_l_channel = int(math.sqrt(white_rgb2lab.lab_l))
+# 
+# def identify_color_features():
 
 
 preprocessed_image = preprocess(image)

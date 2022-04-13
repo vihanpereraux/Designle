@@ -60,14 +60,43 @@ def color_sections(extracted_colors) :
 
     color_1_LAB = convert_color(sRGB_versions[0], LabColor)
     color_2_LAB = convert_color(sRGB_versions[1], LabColor)
-    color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a), 0))
-    color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b), 0))
 
+    if color_1_LAB.lab_a < 0 :
+        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a * -1), 0) * -1)
+    else :
+        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a), 0))
+
+    if color_1_LAB.lab_b < 0 :
+        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b * -1), 0) * -1)
+    else :
+        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b), 0))
+
+
+    # color sceheme 01
     if 70 <= color_1_LAB_achannel <= 80 and color_1_LAB_bchannel >= 70 : 
-        print("Redish !")
+        print("Red !")
+    if 30 <= color_1_LAB_achannel <= 69 and 0 <= color_1_LAB_bchannel <= 70 :
+        print("Red shades")
+
+    if 80 <= color_1_LAB_achannel and -80 <= color_1_LAB_bchannel <= -10 : 
+        print("Purple !")
+    if 40 <= color_1_LAB_achannel <= 80 and -80 <= color_1_LAB_bchannel <= -10 : 
+        print("Purple shades !")
+    
+    if 30 <= color_1_LAB_achannel <= 70 and 40 <= color_1_LAB_bchannel : 
+        print("Orange !")
+    if 20 <= color_1_LAB_achannel <= 40 and 30 <= color_1_LAB_bchannel : 
+        print("Orange shades !")
 
 
-extracted_colors = [ (255, 0, 0), (12, 207, 0) ]
+    # color sceheme 02
+    if 60 <= color_1_LAB_bchannel <= 100 and (-40 <= color_1_LAB_achannel <= 0 or 0 <= color_1_LAB_achannel <= 40) : 
+        print("Yellow !")
+    if 0 <= color_1_LAB_bchannel <= 60 and (-40 <= color_1_LAB_achannel <= 0 or 0 <= color_1_LAB_achannel <= 40) : 
+        print("Yellow shades !")
+
+
+extracted_colors = [ (255, 255, 192), (12, 207, 0) ]
 color_sections(extracted_colors) 
 
 

@@ -1,4 +1,5 @@
 from collections import Counter
+import sys
 from sklearn.cluster import KMeans
 import cv2
 import math
@@ -52,19 +53,6 @@ def calculate_channel_contribution(extracted_colors):
     for color in extracted_colors :
         sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
 
-    color_1_LAB = convert_color(sRGB_versions[0], LabColor)
-    color_2_LAB = convert_color(sRGB_versions[1], LabColor)
-
-    if color_1_LAB.lab_a < 0 :
-        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a * -1), 0) * -1)
-    else :
-        color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a), 0))
-
-    if color_1_LAB.lab_b < 0 :
-        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b * -1), 0) * -1)
-    else :
-        color_1_LAB_bchannel = int(round(math.sqrt(color_1_LAB.lab_b), 0))
-
     for color in sRGB_versions :
         color_LAB = convert_color(color, LabColor)
 
@@ -79,18 +67,18 @@ def calculate_channel_contribution(extracted_colors):
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
         channel_contribution = []
-        channel_contribution.append(color_LAB_achannel)
-        channel_contribution.append(color_LAB_bchannel)
+        channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
+    
+    print(channel_contribution)
 
 
 # 
 # def identify_color_features():
 
 
-preprocessed_image = preprocess(image)
-extract_colors(preprocessed_image)
-
-#color_calculations()
+# preprocessed_image = preprocess(image)
+# extract_colors(preprocessed_image)
+calculate_channel_contribution( [(255,0,0)] )
 
 
 

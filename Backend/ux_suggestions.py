@@ -2,7 +2,11 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics import confusion_matrix, classification_report
 import sys
+
+from matplotlib import pyplot as plt
+import seaborn as sns
 
 
 def get_features(data):
@@ -13,7 +17,7 @@ def get_features(data):
     return importatant_features
 
 
-def match_ux_suggestions() :
+def match_ux_suggestions(suggestion) :
     # df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252', skiprows=0, nrows=70)
     df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252') # Getting the data
 
@@ -33,7 +37,7 @@ def match_ux_suggestions() :
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    suggestion = 'Orange ui components'
+    # suggestion = 'Orange ui components'
         
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]
@@ -44,7 +48,7 @@ def match_ux_suggestions() :
     # sorting the list
     sorted_scores = sorted(scores, key = lambda x:x[1], reverse = True)
     # sorted_scores = sorted_scores[1:]
-
+    
     k = 1 
     for suggestion in sorted_scores:
             if k < 6:
@@ -53,5 +57,44 @@ def match_ux_suggestions() :
                 print('--------------------------------------------------------------------------')
                 k = k + 1
 
+# match_ux_suggestions()
 
-  
+
+# def test_accuracy() :
+#     df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252')
+#     df['importatant_features'] = get_features(df)
+#     cm = CountVectorizer().fit_transform(df['importatant_features'])
+#     cs = cosine_similarity(cm)
+
+#     basic_colorz = ["Red", "Purple", "Orange", "Yellow", "Blue", "Green"]
+#     # prediction = ["Red shades", "Purple", "Orange", "Yellow", "Blue", "Green"]
+#     arara = []
+#     bvbvbv = []
+#     true_usages = ["Orange backgrounds", "Orange ui components", "Red ui components", "Blue ui components", "Bright blue backgrounds", "Yellow ui components"]
+    
+#     for usage in true_usages :
+#         acc_usage = usage
+#         suggestion_id = df[df.design_usage == acc_usage]['suggestion_id'].values[0]
+#         scores = list(enumerate(cs[suggestion_id]))
+#         sorted_scores = sorted(scores, key = lambda x:x[1], reverse = True)
+
+#         arara.append( ((df[df.suggestion_id == sorted_scores[0][0]]['design_usage'].values[0]),(df[df.suggestion_id == sorted_scores[1][0]]['design_usage'].values[0]),(df[df.suggestion_id == sorted_scores[2][0]]['design_usage'].values[0])) )
+#         # for i in range(3):
+#             # arara.append( (df[df.suggestion_id == sorted_scores[i][0]]['design_usage'].values[0]) )
+    
+#     for ddd in arara :
+#         if( true_usages[0][0] in ddd[0] and true_usages[0] == ddd[1] and true_usages[0] == ddd[2] ) :
+#             bvbvbv.append(true_usages[0])
+#     print(arara)
+
+# test_accuracy()
+
+
+
+
+
+    # cm = confusion_matrix(truth, prediction)
+    # print_confusion_matrix(cm,["Dog","Not a dog"])
+    # print(cm,["Red", "Purple", "Orange", "Yellow", "Blue", "Green"])
+    # print(classification_report(truth, prediction))
+

@@ -105,13 +105,14 @@ def identify_color_ranges(channel_contribution):
         if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
             color_features.append("Blue")
         if -50 <= feature[1] <= 0 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append("Blue shades")
+            color_features.append( ("Blue shades", "Blue ui components") )
         if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append("Blue shades")
+            color_features.append( ("Blue shades", "Blue ui components") )
 
-    for i in range(3):
-        print(color_features[i])
-    print(match_ux_suggestions())
+    for i in range(1):
+        print(color_features[i][1])
+
+    print(match_ux_suggestions(color_features[0][1]))
 
 
 preprocessed_image = preprocess(image)

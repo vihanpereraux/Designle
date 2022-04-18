@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    data = match_ux_suggestions("Orange ui components")
-    return render_template("home.html")
+    # data = match_ux_suggestions("Orange ui components")
+    return render_template("base.html")
 
 @app.route("/about")
 def about():

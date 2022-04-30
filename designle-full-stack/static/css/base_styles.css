@@ -18,8 +18,9 @@
     font-family: Space-Grotesk-Medium;
     color: black;
     text-decoration: none;
-    margin-left: -10px;
+    /* margin-left: 10px; */
     width: 110px;
+    /* background-color: yellowgreen; */
 }
 .nav-item a:hover{
     color: #293DDC;

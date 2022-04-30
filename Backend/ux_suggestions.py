@@ -5,8 +5,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import confusion_matrix, classification_report
 import sys
 
-from matplotlib import pyplot as plt
-import seaborn as sns
+# from matplotlib import pyplot as plt
+# import seaborn as sns
 
 
 def get_features(data):
@@ -57,7 +57,7 @@ def match_ux_suggestions(suggestion) :
                 print('--------------------------------------------------------------------------')
                 k = k + 1
 
-# match_ux_suggestions()
+match_ux_suggestions('Brown wordings')
 
 
 # def test_accuracy() :

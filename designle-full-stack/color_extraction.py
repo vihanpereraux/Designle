@@ -27,14 +27,6 @@ def extract_color_features(img_path):
     # extract_colors(image)
 
 
-    # converting rgb to hex
-    # def rgb_to_hex(rgb_color):
-    #     hex_color = "#"
-    #     for i in rgb_color:
-    #         hex_color += ("{:02x}".format(int(i)))
-    #     return hex_color
-
-
     # analyzing the image
     # def extract_colors(img):
     clf = KMeans(n_clusters = 3)
@@ -115,19 +107,63 @@ def extract_color_features(img_path):
         if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
             color_features.append( "Blue shades" )
             
+    temp = []
+    flat_list = []
+    for color_feature in color_features:
+        temp.append(color_feature.split())
+        
+    for sublist in temp:
+        for item in sublist:
+            flat_list.append(item)
 
 
-    # print(match_ux_suggestions(color_features[0][1]))
-    # result = []
+    design_feature = [] # design usages
+    design_usages = [    
+                    ['Blue backgrounds', 'Blue ui components', 'Blue wordings'], 
+                    ['Full red backgrounds', 'Red ui components', 'Red wordings'],
+                    ['Orange backgrounds', 'Orange ui components', 'Orange wordings'],
+                    ['Purple backgrounds', 'Purple ui components'],
+                    ['Green backgrounds', 'Green ui components', 'Green wordings'],
+                    ['Yellow backgrounds', 'Yellow ui components', 'Yellow wordings'],
+                    ['Bright white backgrounds', 'White wordings'],
+                    ['Full black backgrounds', 'Black wordings'],
+                    ['Brown backgrounds', 'Brown ui components', 'Brown wordings']
+                    ]
+    for item in list(dict.fromkeys(flat_list)):
+        match item:
+            case "Blue":
+                for item in design_usages[0]:
+                    design_feature.append(item)
+            case "Red":
+                for item in design_usages[1]:
+                    design_feature.append(item)
+            case "Orange":
+                for item in design_usages[2]:
+                    design_feature.append(item)
+            case "Purple":
+                for item in design_usages[3]:
+                    design_feature.append(item)
+            case "Green":
+                for item in design_usages[4]:
+                    design_feature.append(item)
+            case "Yellow":
+                for item in design_usages[5]:
+                    design_feature.append(item)
+            case "White":
+                for item in design_usages[6]:
+                    design_feature.append(item)
+            case "Black":
+                for item in design_usages[7]:
+                    design_feature.append(item)
+            case "Brown":
+                for item in design_usages[8]:
+                    design_feature.append(item)
 
-    print(color_features)
-    results = list(dict.fromkeys(color_features)) 
-    return results
 
+    # print(color_features)
+    # results = list(dict.fromkeys(color_features)) 
+    return design_feature
 
-# preprocessed_image = preprocess(image)
-# extract_colors(preprocessed_image)
-# calculate_channel_contribution( [(255, 0, 0), (131, 188, 118), (249, 216)] )
 
 
 

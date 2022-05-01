@@ -121,16 +121,15 @@ def identify_color_ranges(channel_contribution):
         for item in sublist:
             flat_list.append(item)
 
-    # print(temp)
     print(list(dict.fromkeys(flat_list)))
     fgfg(list(dict.fromkeys(flat_list)))
-    design_feature = [] # design usages
+
 
 def fgfg(agrument):
-    design_feature = []
+    design_feature = [] # design usages
     features = [ ['Blue backgrounds', 'Blue ui components', 'Blue wordings'], ['Red backgrounds', 'Red ui components', 'Red wordings'] ]
     for item in agrument:
-        match item:
+        match item:             
             case "Blue":
                 for item in features[0]:
                     design_feature.append(item)

@@ -36,7 +36,7 @@ def match_ux_suggestions(suggestion) :
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    # suggestion = 'Orange ui components'
+    #suggestion = 'Orange ui components'
         
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]
@@ -56,7 +56,31 @@ def match_ux_suggestions(suggestion) :
                 print('--------------------------------------------------------------------------')
                 k = k + 1
 
-# match_ux_suggestions('Brown wordings')
+match_ux_suggestions('Blue ui components')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # def test_accuracy() :

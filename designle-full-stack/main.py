@@ -1,8 +1,11 @@
-from json import load
-from flask import Flask, flash, redirect, render_template, request
-import os
+# from json import load
+# import re
+# import os
+# from ux_suggestions import match_ux_suggestions
+from urllib.parse import uses_fragment
+from flask import Flask, flash, redirect, render_template, request, jsonify
+from color_extraction import extract_color_features
 from ux_suggestions import match_ux_suggestions
-from color_extraction import read_img
 
 app = Flask(__name__)
 
@@ -20,10 +23,15 @@ def extract_colors():
     img_file = request.files['file']
     img_path = "./images/" + img_file.filename
     img_file.save(img_path)
-    read_img(img_path)
+    results = extract_color_features(img_path)
 
-    return render_template("suggestions.html")
+    return render_template("suggestions.html", content = results)
     
+@app.route("/feedback", methods=['POST'])
+def feedback():
+    user_feedback = request.form.getlist('mymultiselect')
+    suggestions = match_ux_suggestions(user_feedback)
+    return render_template("suggestions.html", content2 = suggestions)
 
 @app.route("/about")
 def about():

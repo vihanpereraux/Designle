@@ -7,35 +7,38 @@ from tinydb import TinyDB, Query # -> document oriented db
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
 from ux_suggestions import match_ux_suggestions
+import numpy as np
+from collections import OrderedDict
 
 
-# importing and color correction process
-def read_img(img_path):
+def extract_color_features(img_path):
+        
+    # importing and color correction process
     image = cv2.imread(img_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    preprocess(image)
+    # preprocess(image)
 
 
-# resizing and pre-processing the image
-def preprocess(image):
+    # resizing and pre-processing the image
+    # def preprocess(image):
     image = cv2.resize(image, (900, 600), interpolation = cv2.INTER_LINEAR)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
     # return image
-    extract_colors(image)
+    # extract_colors(image)
 
 
-# converting rgb to hex
-def rgb_to_hex(rgb_color):
-    hex_color = "#"
-    for i in rgb_color:
-        hex_color += ("{:02x}".format(int(i)))
-    return hex_color
+    # converting rgb to hex
+    # def rgb_to_hex(rgb_color):
+    #     hex_color = "#"
+    #     for i in rgb_color:
+    #         hex_color += ("{:02x}".format(int(i)))
+    #     return hex_color
 
 
-# analyzing the image
-def extract_colors(img):
+    # analyzing the image
+    # def extract_colors(img):
     clf = KMeans(n_clusters = 3)
-    color_labels = clf.fit_predict(img) # cluster collection -> lots of 0s,1s and 2s
+    color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters
     counts = Counter(color_labels) # amounts of three cluster collections
 
@@ -44,11 +47,11 @@ def extract_colors(img):
     for i in range(3):
         extracted_colors.append(center_colors[i])
 
-    calculate_channel_contribution(extracted_colors)
+    # calculate_channel_contribution(extracted_colors)
 
 
-# color channel calculations relate to the domain
-def calculate_channel_contribution(extracted_colors):
+    # color channel calculations relate to the domain
+    # def calculate_channel_contribution(extracted_colors):
     sRGB_versions = []    
     channel_contribution = []
     for color in extracted_colors :
@@ -68,27 +71,27 @@ def calculate_channel_contribution(extracted_colors):
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
         channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
-    
-    # print(channel_contribution)
-    identify_color_ranges(channel_contribution)
+        
+        # print(channel_contribution)
+        # identify_color_ranges(channel_contribution)
 
 
-# Identifying color ranges of extracted colors 
-def identify_color_ranges(channel_contribution):
+    # Identifying color ranges of extracted colors 
+    # def identify_color_ranges(channel_contribution):
     color_features = []
 
-    # color sceheme 01
     for feature in channel_contribution :
+        # color sceheme 01
         if 70 <= feature[0] <= 80 and feature[1] >= 70 : 
-            color_features.append("Red")
+            color_features.append( ("Red") )
         if 30 <= feature[0] <= 69 and 0 <= feature[1] <= 70 :
-            color_features.append("Red shades")
+            color_features.append( ("Red shades") )
 
         if 80 <= feature[0] and -80 <= feature[1] <= -10 : 
             color_features.append("Purple")
         if 40 <= feature[0] <= 80 and -80 <= feature[1] <= -10 : 
             color_features.append("Purple shades")
-        
+            
         if 30 <= feature[0] <= 70 and 40 <= feature[1] : 
             color_features.append("Orange")
         if 20 <= feature[0] <= 40 and 30 <= feature[1] : 
@@ -108,14 +111,18 @@ def identify_color_ranges(channel_contribution):
         if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
             color_features.append("Blue")
         if -50 <= feature[1] <= 0 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( ("Blue shades", "Blue ui components") )
+            color_features.append( "Blue shades" )
         if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( ("Blue shades", "Blue ui components") )
+            color_features.append( "Blue shades" )
+            
 
-    for i in range(1):
-        print(color_features[i][1])
 
-    print(match_ux_suggestions(color_features[0][1]))
+    # print(match_ux_suggestions(color_features[0][1]))
+    # result = []
+
+    print(color_features)
+    results = list(dict.fromkeys(color_features)) 
+    return results
 
 
 # preprocessed_image = preprocess(image)

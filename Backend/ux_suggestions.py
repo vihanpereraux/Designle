@@ -28,7 +28,6 @@ def match_ux_suggestions(suggestion) :
         
     # new coloumn to hold the combined strings
     df['importatant_features'] = get_features(df)
-    print(df.head(3));
 
     # convert the text to a matrix
     cm = CountVectorizer().fit_transform(df['importatant_features'])
@@ -57,7 +56,7 @@ def match_ux_suggestions(suggestion) :
                 print('--------------------------------------------------------------------------')
                 k = k + 1
 
-match_ux_suggestions('Brown wordings')
+# match_ux_suggestions('Brown wordings')
 
 
 # def test_accuracy() :

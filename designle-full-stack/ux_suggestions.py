@@ -5,8 +5,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import confusion_matrix, classification_report
 import sys
 
-from matplotlib import pyplot as plt
-import seaborn as sns
 
 
 def get_features(data):
@@ -17,7 +15,9 @@ def get_features(data):
     return importatant_features
 
 
-def match_ux_suggestions(suggestion) :
+def match_ux_suggestions(fff) :
+
+    # suggestion = fff[0]
     # df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252', skiprows=0, nrows=70)
     df = pd.read_csv('data/ux_suggestions.csv', encoding='cp1252') # Getting the data
 
@@ -37,7 +37,7 @@ def match_ux_suggestions(suggestion) :
     cs = cosine_similarity(cm)
 
     # get the title of the movie that user likes
-    # suggestion = 'Orange ui components'
+    suggestion = 'Orange ui components'
         
     # getting the releavnt movie ID
     suggestion_id = df[df.design_usage == suggestion]['suggestion_id'].values[0]

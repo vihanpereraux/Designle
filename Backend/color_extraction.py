@@ -10,7 +10,7 @@ from ux_suggestions import match_ux_suggestions
 
 
 # importing and color correction process
-image = cv2.imread('images/Design03.png')
+image = cv2.imread('images/Design01.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 
@@ -72,7 +72,7 @@ def calculate_channel_contribution(extracted_colors):
 
 # Identifying color ranges of extracted colors 
 def identify_color_ranges(channel_contribution):
-    color_features = []
+    color_features = [] # color usages
 
     # color sceheme 01
     for feature in channel_contribution :
@@ -105,19 +105,46 @@ def identify_color_ranges(channel_contribution):
         if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
             color_features.append("Blue")
         if -50 <= feature[1] <= 0 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( ("Blue shades", "Blue ui components") )
-        if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( ("Blue shades", "Blue ui components") )
+            color_features.append("Blue shades")
+        if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) :
+            color_features.append("Blue low shades") 
 
-    for i in range(1):
-        print(color_features[i][1])
 
-    print(match_ux_suggestions(color_features[0][1]))
+    # print(list(dict.fromkeys(color_features)))
+    
+    temp = []
+    flat_list = []
+    for color_feature in color_features:
+        temp.append(color_feature.split())
+        
+    for sublist in temp:
+        for item in sublist:
+            flat_list.append(item)
+
+    # print(temp)
+    print(list(dict.fromkeys(flat_list)))
+    fgfg(list(dict.fromkeys(flat_list)))
+    design_feature = [] # design usages
+
+def fgfg(agrument):
+    design_feature = []
+    features = [ ['Blue backgrounds', 'Blue ui components', 'Blue wordings'], ['Red backgrounds', 'Red ui components', 'Red wordings'] ]
+    for item in agrument:
+        match item:
+            case "Blue":
+                for item in features[0]:
+                    design_feature.append(item)
+            case "Red":
+                for item in features[1]:
+                    design_feature.append(item)
+       
+    # return (design_feature)
+    print(design_feature)
 
 
 preprocessed_image = preprocess(image)
 extract_colors(preprocessed_image)
-# calculate_channel_contribution( [(255, 0, 0), (131, 188, 118), (249, 216)] )
+
 
 
 

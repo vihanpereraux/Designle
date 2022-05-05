@@ -10,10 +10,13 @@
             <form method="post" action="/suggestions" enctype="multipart/form-data" class="mt-4">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Upload your designs here</label>
-                    <input type="file" name="file" class="form-control" id="uidesignupload">
+                    <input required type="file" name="file" class="form-control" id="uidesignupload" onchange="imgFunction(event)">
                 </div>
-                <button class="btn btn-primary">Upload</button>
+                
+                <button id="myBtn" type="submit" class="btn btn-primary">Upload</button>
             </form>         
+            
+            <a onclick="classifyText()" class="btn btn-primary w-25 mt-4">Do the Math</a>
 
         </div>
     </div>
@@ -41,13 +44,45 @@
                     {% endfor %}
                 </ul>
 
-                <button class="btn btn-primary" onclick="getFunc()">Filter</button>
-
             </div>
         </div>
     </div>
 
-    <script>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>These are the categories that we found by analyzing your design</p>
+                <p>If you don't have an idea about the category keep it as "General"</p><br>
+
+                <select name="categories" id="categories" form="categoriesform">
+                    <option value="General">General</option>
+                </select>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button id="closeBtn" type="button" class="btn btn-danger" data-bs-dismiss="modal">Decline</button>
+                <button id="applyBtn" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+            </div>
+    
+        </div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='js/text_extraction.js')}}"></script>
+    <script src="{{url_for('static', filename='js/text_classification.js')}}"></script>
+
+    <!-- <script>
         function getFunc(){
             $.ajax({
             url: "/feedback",
@@ -63,7 +98,6 @@
                 }
             });
         }
-    </script>
+    </script> -->
     
-
 {% endblock %}

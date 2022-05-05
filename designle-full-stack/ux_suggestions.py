@@ -43,7 +43,7 @@ def match_ux_suggestions(user_feedback) :
             for suggestion in sorted_scores:
                     if k < 5:
                         print('Suggetion - ' , df[df.suggestion_id == suggestion[0]]['design_usage'].values[0])
-                        suggestions.append(df[df.suggestion_id == suggestion[0]]['ux_suggestion'].values[0])
+                        suggestions.append( (df[df.suggestion_id == suggestion[0]]['ux_suggestion'].values[0], df[df.suggestion_id == suggestion[0]]['design_category'].values[0]) )
                         print('Similarity score - ' , suggestion[1]*100,'%', suggestion[0])
                         print('--------------------------------------------------------------------------')
                         k = k + 1

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Designle About Us{% endblock %}
+
+{% block content %}
+    <button class="btn btn-primary" onclick="get()">Get</button>
+    <script>
+        function get(){
+            $.ajax({
+                url: "/about",
+                type: "POST",
+                data: {},
+                success: function(response) {
+                //response.map stores the map array
+                    // for (var [v1, v2, v3] of response.map){
+                    //     console.log(v1)
+                    //     console.log(v2)
+                    //     console.log(v3)
+                    // }
+                    console.log(response.data[0][0].category)
+                }
+            });
+        }
+    </script>
+{% endblock %}

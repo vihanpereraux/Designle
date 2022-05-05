@@ -22,24 +22,48 @@
         <div class="row">
             <div id="results">
 
-                <form method="post" action="/feedback" class="mt-5">
+                <form method="post" action="/feedback" class="mt-5" onsubmit="false">
                     <select name="mymultiselect" class="form-select" multiple>
                         <!-- <option selected>Open this select menu</option> -->
                         {% for cont in content %}
                             <option value="{{ cont }}">{{ cont }}</option>
                         {% endfor %}
                     </select>
-                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-primary" onclick="getFunc()">Submit</button>
                 </form>
 
                 <ul id="suggestion-list" class="mt-5">
                     {% for cont in content2 %}
                         <li>{{ cont }}</li><br>
+                        <!-- {% if cont[1] == "General" %}
+                            <li>{{ cont }}</li><br>
+                        {% endif %} -->
                     {% endfor %}
                 </ul>
+
+                <button class="btn btn-primary" onclick="getFunc()">Filter</button>
 
             </div>
         </div>
     </div>
+
+    <script>
+        function getFunc(){
+            $.ajax({
+            url: "/feedback",
+            type: "POST",
+            data: {},
+            success: function(response) {
+                //response.map stores the map array
+                    for (var [v1, v2, v3] of response.map){
+                        console.log(v1)
+                        console.log(v2)
+                        console.log(v3)
+                    }
+                }
+            });
+        }
+    </script>
+    
 
 {% endblock %}

@@ -114,6 +114,7 @@ function classifyText()
         }
     }
 
+    
     var modal = document.getElementById("myModal");
     var closeBtn = document.getElementById("closeBtn");
     var applyBtn = document.getElementById("applyBtn");
@@ -133,8 +134,8 @@ function classifyText()
     }
 
     applyBtn.onclick = function() {
-        console.log(categoriesForm.value);
-        localStorage.setItem("category", JSON.stringify(categoriesForm.value));
+        console.log(selectOptions.value);
+        localStorage.setItem("category", JSON.stringify(selectOptions.value));
         modal.style.display = "none";
     }
     

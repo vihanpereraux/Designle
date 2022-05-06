@@ -65,5 +65,7 @@ function processData(extractedText)
     if (cleanedText != null){
         document.getElementById("myBtn").disabled = false;
     }
+
+    classifyText()
 }
 

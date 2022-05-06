@@ -1,179 +1,35 @@
 {
     "_default": {
         "1": {
-            "suggestion": "Because purple is the color of luxury, some people have abused it to express their status within society.",
-            "category": "Products"
+            "suggestion": "Bright green backgrounds can also communicate rot and decay.",
+            "category": "General"
         },
         "2": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
+            "suggestion": "Bright green backgrounds or being surrounded by the wrong shade of green can bring up the feelings of boredom, lack of life and stagnation.",
             "category": "General"
         },
         "3": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
+            "suggestion": "Blue shades are used a lot in the corporate world websites.",
+            "category": "Corporate"
         },
         "4": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
+            "suggestion": "Bright green backgrounds invokes invokes negative feelings like Jealousy, Greed",
             "category": "General"
         },
         "5": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
+            "suggestion": "It is often used in situations and products intended to create a sense of excitement or energy.",
             "category": "Products"
         },
         "6": {
-            "suggestion": "Because of the youthful and playful nature of purple, it\u2019s often been deemed as the color of immaturity, too.",
-            "category": "General"
+            "suggestion": "Yellow shades invokes positive feelings like Happiness, Enlightenment, Creativity",
+            "category": "Business"
         },
         "7": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
+            "suggestion": "Yellow shades invokes positive feelings like High Energy, Optimism, Curiosity",
+            "category": "Products"
         },
         "8": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "9": {
-            "suggestion": "Because purple is the color of luxury, some people have abused it to express their status within society.",
-            "category": "Products"
-        },
-        "10": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "11": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "12": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "13": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "14": {
-            "suggestion": "Because of the youthful and playful nature of purple, it\u2019s often been deemed as the color of immaturity, too.",
-            "category": "General"
-        },
-        "15": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "16": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "17": {
-            "suggestion": "Because purple is the color of luxury, some people have abused it to express their status within society.",
-            "category": "Products"
-        },
-        "18": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "19": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "20": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "21": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "22": {
-            "suggestion": "Because of the youthful and playful nature of purple, it\u2019s often been deemed as the color of immaturity, too.",
-            "category": "General"
-        },
-        "23": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "24": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "25": {
-            "suggestion": "Because purple is the color of luxury, some people have abused it to express their status within society.",
-            "category": "Products"
-        },
-        "26": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "27": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "28": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "29": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "30": {
-            "suggestion": "Because of the youthful and playful nature of purple, it\u2019s often been deemed as the color of immaturity, too.",
-            "category": "General"
-        },
-        "31": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "32": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
-            "category": "General"
-        },
-        "33": {
-            "suggestion": "When each and every element on your site is in red, it creates a competition between those elements and increases the cognitive load",
-            "category": "Ecomerce"
-        },
-        "34": {
-            "suggestion": "Red always makes you feel that you are running out of time and rushes you to take the next action.",
-            "category": "General"
-        },
-        "35": {
-            "suggestion": "we use the color red to display error messages because of its ability to grab the attention faster than the other colors",
-            "category": "General"
-        },
-        "36": {
-            "suggestion": "When you use blue backgrounds with other bright colors in one design, it increases the risk of highlighted elements as they become a part of a colorful mess.",
-            "category": "General"
-        },
-        "37": {
-            "suggestion": "When each and every element on your site is in red, it creates a competition between those elements and increases the cognitive load",
-            "category": "Ecomerce"
-        },
-        "38": {
-            "suggestion": "Red always makes you feel that you are running out of time and rushes you to take the next action.",
-            "category": "General"
-        },
-        "39": {
-            "suggestion": "we use the color red to display error messages because of its ability to grab the attention faster than the other colors",
-            "category": "General"
-        },
-        "40": {
-            "suggestion": "When you use blue backgrounds with other bright colors in one design, it increases the risk of highlighted elements as they become a part of a colorful mess.",
-            "category": "General"
-        },
-        "41": {
-            "suggestion": "According to surveys, almost 75 percent of pre-adolescent children prefer purple to all other colors. ",
-            "category": "Products"
-        },
-        "42": {
-            "suggestion": "Because of the youthful and playful nature of purple, it\u2019s often been deemed as the color of immaturity, too.",
-            "category": "General"
-        },
-        "43": {
-            "suggestion": "For people in depressed states, purple can worsen their depression and make their condition even worse. That has been psychologically shown many times.",
-            "category": "General"
-        },
-        "44": {
-            "suggestion": "darker shades can represent sadness and frustration. In some parts of Europe, purple is associated with death and mourning",
+            "suggestion": "Yellow is used best in a supportive role to another colour like black or brown to support it.",
             "category": "General"
         }
     }

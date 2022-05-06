@@ -1,4 +1,3 @@
-import re
 from flask import Flask, redirect, render_template, request, jsonify
 import flask
 from color_extraction import extract_color_features
@@ -13,7 +12,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    # data = match_ux_suggestions("Orange ui components")
     return render_template("home.html")
 
 
@@ -36,6 +34,7 @@ def extract_colors():
 def feedback():
     user_feedback = request.form.getlist('mymultiselect')
     suggestions = match_ux_suggestions(user_feedback)
+    db.truncate()
     for item in suggestions:
         db.insert(
             {

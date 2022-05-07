@@ -18,6 +18,9 @@
         <!-- Ajax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <!-- OCR js lib -->
         <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 
@@ -49,10 +52,19 @@
 
             </div>
         </nav>
+    <body>
+        <div class="loader-wrapper">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </div>
 
-    <body onload="myFunction()">
         {% block content %}
         {% endblock %}
+
+        <script>
+            $(window).on("load", function(){
+                $(".loader-wrapper").fadeOut("slow");
+            })
+        </script>
 
         <!-- Bootstrap v5 js -->
         <script

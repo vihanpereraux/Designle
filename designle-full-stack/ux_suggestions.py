@@ -49,6 +49,5 @@ def match_ux_suggestions(user_feedback) :
                         k = k + 1
 
     return(suggestions)
-    # return(fff)
 
 

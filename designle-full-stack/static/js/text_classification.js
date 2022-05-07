@@ -7,7 +7,6 @@ function loadData()
 
 function classifyText()
 {
-    localStorage.removeItem('category')
     // classifier instance 
     var classifier = new Classifier ({
         nGramMin: 1,

@@ -5,7 +5,7 @@ from ux_suggestions import match_ux_suggestions
 
 
 from tinydb import TinyDB, Query
-db = TinyDB('db.json')
+db = TinyDB('database/db.json')
 
 app = Flask(__name__)
 

@@ -3,12 +3,8 @@ from sklearn.cluster import KMeans
 import cv2
 import math
 from tinydb import TinyDB, Query # -> document oriented db
-# db = TinyDB('database/colors.json')
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
-from ux_suggestions import match_ux_suggestions
-import numpy as np
-from collections import OrderedDict
 
 
 def extract_color_features(img_path):
@@ -16,19 +12,14 @@ def extract_color_features(img_path):
     # importing and color correction process
     image = cv2.imread(img_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    # preprocess(image)
 
 
     # resizing and pre-processing the image
-    # def preprocess(image):
     image = cv2.resize(image, (900, 600), interpolation = cv2.INTER_LINEAR)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
-    # return image
-    # extract_colors(image)
 
 
     # analyzing the image
-    # def extract_colors(img):
     clf = KMeans(n_clusters = 3)
     color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters
@@ -39,11 +30,8 @@ def extract_color_features(img_path):
     for i in range(3):
         extracted_colors.append(center_colors[i])
 
-    # calculate_channel_contribution(extracted_colors)
-
 
     # color channel calculations relate to the domain
-    # def calculate_channel_contribution(extracted_colors):
     sRGB_versions = []    
     channel_contribution = []
     for color in extracted_colors :
@@ -63,13 +51,9 @@ def extract_color_features(img_path):
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
         channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
-        
-        # print(channel_contribution)
-        # identify_color_ranges(channel_contribution)
 
 
     # Identifying color ranges of extracted colors 
-    # def identify_color_ranges(channel_contribution):
     color_features = []
 
     for feature in channel_contribution :
@@ -117,98 +101,74 @@ def extract_color_features(img_path):
             flat_list.append(item)
 
 
+    Fruit = Query()
+    db = TinyDB('database/design_usages.json')
+
     design_feature = [] # design usages
-    design_usages = [    
-                    ['Blue backgrounds', 'Blue ui components', 'Blue wordings'], 
-                    ['Full red backgrounds', 'Red ui components', 'Red wordings'],
-                    ['Orange backgrounds', 'Orange ui components', 'Orange wordings'],
-                    ['Purple backgrounds', 'Purple ui components'],
-                    ['Green backgrounds', 'Green ui components', 'Green wordings'],
-                    ['Yellow backgrounds', 'Yellow ui components', 'Yellow wordings'],
-                    ['Bright white backgrounds', 'White wordings'],
-                    ['Full black backgrounds', 'Black wordings'],
-                    ['Brown backgrounds', 'Brown ui components', 'Brown wordings']
-                    ]
+   
     for item in list(dict.fromkeys(flat_list)):
         match item:
             case "Blue":
-                for item in design_usages[0]:
+                blue_usages = []
+                for i in range(3):
+                    blue_usages.append(db.search(Fruit.basicColor == 'Blue')[0]['usage'+str(i+1)])
+                for item in blue_usages:
                     design_feature.append(item)
+            
             case "Red":
-                for item in design_usages[1]:
+                red_usages = []
+                for i in range(3):
+                    red_usages.append(db.search(Fruit.basicColor == 'Red')[0]['usage'+str(i+1)])
+                for item in red_usages:
                     design_feature.append(item)
+            
             case "Orange":
-                for item in design_usages[2]:
+                orange_usages = []
+                for i in range(3):
+                    orange_usages.append(db.search(Fruit.basicColor == 'Orange')[0]['usage'+str(i+1)])
+                for item in orange_usages:
                     design_feature.append(item)
+            
             case "Purple":
-                for item in design_usages[3]:
+                purple_usages = []
+                for i in range(2):
+                    purple_usages.append(db.search(Fruit.basicColor == 'Purple')[0]['usage'+str(i+1)])
+                for item in purple_usages:
                     design_feature.append(item)
+            
             case "Green":
-                for item in design_usages[4]:
+                green_usages = []
+                for i in range(3):
+                    green_usages.append(db.search(Fruit.basicColor == 'Green')[0]['usage'+str(i+1)])
+                for item in green_usages:
                     design_feature.append(item)
+            
             case "Yellow":
-                for item in design_usages[5]:
+                yellow_usages = []
+                for i in range(3):
+                    yellow_usages.append(db.search(Fruit.basicColor == 'Yellow')[0]['usage'+str(i+1)])
+                for item in yellow_usages:
                     design_feature.append(item)
+            
             case "White":
-                for item in design_usages[6]:
+                white_usages = []
+                for i in range(2):
+                    white_usages.append(db.search(Fruit.basicColor == 'White')[0]['usage'+str(i+1)])
+                for item in white_usages:
                     design_feature.append(item)
+            
             case "Black":
-                for item in design_usages[7]:
+                black_usages = []
+                for i in range(2):
+                    black_usages.append(db.search(Fruit.basicColor == 'Black')[0]['usage'+str(i+1)])
+                for item in black_usages:
                     design_feature.append(item)
+            
             case "Brown":
-                for item in design_usages[8]:
+                brown_usages = []
+                for i in range(3):
+                    brown_usages.append(db.search(Fruit.basicColor == 'Brown')[0]['usage'+str(i+1)])
+                for item in brown_usages:
                     design_feature.append(item)
 
-
-    # print(color_features)
-    # results = list(dict.fromkeys(color_features)) 
     return design_feature
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def data(extracted_rgb_data):
-
-#     if len(extracted_rgb_data) != 0:
-#         db.drop_tables() # flush the db first
-#         for data in extracted_rgb_data:
-#             db.insert({ 'hexValues': rgb_to_hex(data) })
-#     else:
-#         print('Colors are not available')
-    
-#     print(extracted_rgb_data)
-
-
-
-# from collections import Counter
-# from itertools import count
-# import py_compile
-# from turtle import pen
-# from sklearn.cluster import KMeans
-# from matplotlib import colors
-# import matplotlib.pyplot as plt
-# import numpy as np
-# import cv2
-# import math
-
-# from tinydb import TinyDB, Query # -> document oriented db
-# db = TinyDB('database/colors.json')
-
-# from colormath.color_objects import sRGBColor, LabColor
-# from colormath.color_conversions import convert_color
-# from colormath.color_diff import delta_e_cie2000

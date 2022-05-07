@@ -1,0 +1,55 @@
+{
+    "_default": {
+        "1": {
+            "basicColor": "Blue",
+            "usage1": "Blue backgrounds",
+            "usage2": "Blue ui components",
+            "usage3": "Blue wordings"
+        },
+        "2": {
+            "basicColor": "Red",
+            "usage1": "Full red backgrounds",
+            "usage2": "Red ui components",
+            "usage3": "Red wordings"
+        },
+        "3": {
+            "basicColor": "Orange",
+            "usage1": "Orange backgrounds",
+            "usage2": "Orange ui components",
+            "usage3": "Orange wordings"
+        },
+        "4": {
+            "basicColor": "Purple",
+            "usage1": "Purple backgrounds",
+            "usage2": "Purple ui components"
+        },
+        "5": {
+            "basicColor": "Green",
+            "usage1": "Green backgrounds",
+            "usage2": "Green ui components",
+            "usage3": "Green wordings"
+        },
+        "6": {
+            "basicColor": "Yellow",
+            "usage1": "Yellow backgrounds",
+            "usage2": "Yellow ui components",
+            "usage3": "Yellow wordings"
+        },
+        "7": {
+            "basicColor": "White",
+            "usage1": "Bright white backgrounds",
+            "usage2": "White wordings"
+        },
+        "8": {
+            "basicColor": "Black",
+            "usage1": "Full black backgrounds",
+            "usage2": "Black wordings"
+        },
+        "9": {
+            "basicColor": "Brown",
+            "usage1": "Brown backgrounds",
+            "usage2": "Brown ui components",
+            "usage3": "Brown wordings"
+        }
+    }
+}

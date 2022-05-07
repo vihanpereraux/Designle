@@ -1,9 +1,9 @@
 // Reading the uploaded image
 function imgFunction(event)
 {
-    localStorage.removeItem('cleanedText')
-    // accessing url of the <img> attribute
-    // var outputUrl = document.getElementById('output').src;
+    localStorage.removeItem('cleanedText');
+    localStorage.removeItem('category');
+    
     document.getElementById("myBtn").disabled = true;
 
     // setting the url
@@ -33,8 +33,7 @@ function extractText(imageUrl)
 
 
 // Pre processing extracted data
-// an array to store cleaned data
-var cleanedText = [];
+var cleanedText = []; // an array to store cleaned data
 
 function processData(extractedText)
 {   

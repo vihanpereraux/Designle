@@ -1,0 +1,11 @@
+ design_usages = [    
+                    ['Blue backgrounds', 'Blue ui components', 'Blue wordings'], 
+                    ['Full red backgrounds', 'Red ui components', 'Red wordings'],
+                    ['Orange backgrounds', 'Orange ui components', 'Orange wordings'],
+                    ['Purple backgrounds', 'Purple ui components'],
+                    ['Green backgrounds', 'Green ui components', 'Green wordings'],
+                    ['Yellow backgrounds', 'Yellow ui components', 'Yellow wordings'],
+                    ['Bright white backgrounds', 'White wordings'],
+                    ['Full black backgrounds', 'Black wordings'],
+                    ['Brown backgrounds', 'Brown ui components', 'Brown wordings']
+                    ]

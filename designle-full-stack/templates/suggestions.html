@@ -13,7 +13,7 @@
                     <input required type="file" name="file" class="form-control" id="uidesignupload" onchange="imgFunction(event)">
                 </div>
                 
-                <button id="myBtn" type="submit" class="btn btn-primary">Upload</button>
+                <button id="myBtn" type="submit" class="btn btn-primary">Analyze Colors</button>
             </form>         
 
         </div>
@@ -30,20 +30,17 @@
                             <option value="{{ cont }}">{{ cont }}</option>
                         {% endfor %}
                     </select>
-                    <button class="btn btn-primary" id="submitBtn">Submit</button>
+                    <button class="btn btn-primary mt-3" id="submitBtn">Send Feedback</button>
                 </form>
 
                 <ul id="suggestion-list" class="mt-5">
                     {% for cont in content2 %}
                         <li>{{ cont }}</li><br>
-                        <!-- {% if cont[1] == "General" %}
-                            <li>{{ cont }}</li><br>
-                        {% endif %} -->
                     {% endfor %}
                 </ul>
 
-                <button id="filterBtn" class="btn btn-primary w-25 mt-4">Filter Results</button>
-                <ul id="filtered-results"></ul>
+                <!-- <button id="filterBtn" class="btn btn-primary w-25 mt-4">Filter Results</button>
+                <ul id="filtered-results"></ul> -->
 
             </div>
         </div>
@@ -86,6 +83,6 @@
     <!-- script for text classification -->
     <script src="{{url_for('static', filename='js/text_classification.js')}}"></script>
     <!-- script for filtering final results -->
-    <script src="{{url_for('static', filename='js/results_filter.js')}}"></script>
+    <!-- <script src="{{url_for('static', filename='js/results_filter.js')}}"></script> -->
     
 {% endblock %}

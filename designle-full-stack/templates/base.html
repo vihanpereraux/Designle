@@ -54,6 +54,8 @@
         </nav>
     <body>
         <div class="loader-wrapper">
+            <h5 id="progress-text">Loading...</h5>
+            <div id="progress-bar"></div>
             <span class="loader"><span class="loader-inner"></span></span>
         </div>
 
@@ -62,7 +64,9 @@
 
         <script>
             $(window).on("load", function(){
-                $(".loader-wrapper").fadeOut("slow");
+                setTimeout(function(){
+                    $(".loader-wrapper").fadeOut("slow");
+                }, 3000)
             })
         </script>
 

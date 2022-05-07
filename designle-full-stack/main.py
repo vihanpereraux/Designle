@@ -42,7 +42,7 @@ def feedback():
                 'category': item[1]
             }
         )
-    return render_template("suggestions.html", content2 = suggestions)
+    return render_template("results.html", content2 = suggestions)
 
 
 @app.route("/about")

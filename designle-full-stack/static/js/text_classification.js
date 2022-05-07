@@ -7,6 +7,7 @@ function loadData()
 
 function classifyText()
 {
+    localStorage.removeItem('category')
     // classifier instance 
     var classifier = new Classifier ({
         nGramMin: 1,
@@ -139,6 +140,6 @@ function classifyText()
         modal.style.display = "none";
     }
     
-    console.log(results)
-    loadData()
+    // console.log(results)
+    // loadData()
 }

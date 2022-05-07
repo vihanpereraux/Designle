@@ -15,8 +15,6 @@
                 
                 <button id="myBtn" type="submit" class="btn btn-primary">Upload</button>
             </form>         
-            
-            <a onclick="classifyText()" class="btn btn-primary w-25 mt-4">Do the Math</a>
 
         </div>
     </div>
@@ -32,7 +30,7 @@
                             <option value="{{ cont }}">{{ cont }}</option>
                         {% endfor %}
                     </select>
-                    <button class="btn btn-primary" onclick="getFunc()">Submit</button>
+                    <button class="btn btn-primary" id="submitBtn">Submit</button>
                 </form>
 
                 <ul id="suggestion-list" class="mt-5">
@@ -44,9 +42,13 @@
                     {% endfor %}
                 </ul>
 
+                <button id="filterBtn" class="btn btn-primary w-25 mt-4">Filter Results</button>
+                <ul id="filtered-results"></ul>
+
             </div>
         </div>
     </div>
+
 
     <!-- The Modal -->
     <div class="modal" id="myModal">
@@ -79,25 +81,11 @@
         </div>
     </div>
 
+    <!-- script for text extraction -->
     <script src="{{url_for('static', filename='js/text_extraction.js')}}"></script>
+    <!-- script for text classification -->
     <script src="{{url_for('static', filename='js/text_classification.js')}}"></script>
-
-    <!-- <script>
-        function getFunc(){
-            $.ajax({
-            url: "/feedback",
-            type: "POST",
-            data: {},
-            success: function(response) {
-                //response.map stores the map array
-                    for (var [v1, v2, v3] of response.map){
-                        console.log(v1)
-                        console.log(v2)
-                        console.log(v3)
-                    }
-                }
-            });
-        }
-    </script> -->
+    <!-- script for filtering final results -->
+    <script src="{{url_for('static', filename='js/results_filter.js')}}"></script>
     
 {% endblock %}

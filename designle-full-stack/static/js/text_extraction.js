@@ -1,10 +1,11 @@
 // Reading the uploaded image
 function imgFunction(event)
 {
+    localStorage.removeItem('cleanedText')
     // accessing url of the <img> attribute
     // var outputUrl = document.getElementById('output').src;
     document.getElementById("myBtn").disabled = true;
-    
+
     // setting the url
 	var outputUrl = URL.createObjectURL(event.target.files[0]);
 

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Designle Suggestions{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div id="results">
+
+                <ul id="suggestion-list" class="mt-5">
+                    {% for cont in content2 %}
+                        <li>{{ cont }}</li><br>
+                        <!-- {% if cont[1] == "General" %}
+                            <li>{{ cont }}</li><br>
+                        {% endif %} -->
+                    {% endfor %}
+                </ul>
+
+                <button id="filterBtn" class="btn btn-primary w-25 mt-4">Filter Results</button>
+                <ul id="filtered-results"></ul>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- script for filtering final results -->
+    <script src="{{url_for('static', filename='js/results_filter.js')}}"></script>
+    
+{% endblock %}

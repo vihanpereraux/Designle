@@ -64,7 +64,12 @@ def calculate_channel_contribution(extracted_colors):
         else :
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
-        channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
+        if color_LAB.lab_l < 0 :
+            color_1_LAB_lchannel = int(round(math.sqrt(color_LAB.lab_l * -1), 0) * -1)
+        else :
+            color_1_LAB_lchannel = int(round(math.sqrt(color_LAB.lab_l), 0))
+
+        channel_contribution.append((color_LAB_achannel, color_LAB_bchannel, color_1_LAB_lchannel))
     
     # print(channel_contribution)
     identify_color_ranges(channel_contribution)

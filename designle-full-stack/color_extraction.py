@@ -13,11 +13,9 @@ def extract_color_features(img_path):
     image = cv2.imread(img_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-
     # resizing and pre-processing the image
     image = cv2.resize(image, (900, 600), interpolation = cv2.INTER_LINEAR)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
-
 
     # analyzing the image
     clf = KMeans(n_clusters = 3)
@@ -25,11 +23,11 @@ def extract_color_features(img_path):
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters
     counts = Counter(color_labels) # amounts of three cluster collections
 
+
     # adding RGB values into an array
     extracted_colors = []
     for i in range(3):
         extracted_colors.append(center_colors[i])
-
 
     # color channel calculations relate to the domain
     sRGB_versions = []    
@@ -50,47 +48,68 @@ def extract_color_features(img_path):
         else :
             color_LAB_bchannel = int(round(math.sqrt(color_LAB.lab_b), 0))
 
-        channel_contribution.append((color_LAB_achannel, color_LAB_bchannel))
+        if color_LAB.lab_l < 0 :
+            color_LAB_lchannel = int(round(math.sqrt(color_LAB.lab_l * -1), 0) * -1)
+        else :
+            color_LAB_lchannel = int(round(math.sqrt(color_LAB.lab_l), 0))
+
+        channel_contribution.append((color_LAB_achannel, color_LAB_bchannel, color_LAB_lchannel))
 
 
     # Identifying color ranges of extracted colors 
     color_features = []
 
     for feature in channel_contribution :
-        # color sceheme 01
-        if 70 <= feature[0] <= 80 and feature[1] >= 70 : 
-            color_features.append( ("Red") )
-        if 30 <= feature[0] <= 69 and 0 <= feature[1] <= 70 :
-            color_features.append( ("Red shades") )
+        if color_LAB_lchannel < 85 :
+            # color sceheme 01
+            if 70 <= feature[0] <= 80 and feature[1] >= 70 : 
+                color_features.append( ("Red") )
+            if 30 <= feature[0] <= 69 and 0 <= feature[1] <= 70 :
+                color_features.append( ("Red shades") )
 
-        if 80 <= feature[0] and -80 <= feature[1] <= -10 : 
-            color_features.append("Purple")
-        if 40 <= feature[0] <= 80 and -80 <= feature[1] <= -10 : 
-            color_features.append("Purple shades")
+            if 80 <= feature[0] and -80 <= feature[1] <= -10 : 
+                color_features.append("Purple")
+            if 40 <= feature[0] <= 80 and -80 <= feature[1] <= -10 : 
+                color_features.append("Purple shades")
+                
+            if 30 <= feature[0] <= 70 and 40 <= feature[1] : 
+                color_features.append("Orange")
+            if 20 <= feature[0] <= 40 and 30 <= feature[1] : 
+                color_features.append("Orange shades")
+
+
+            # color sceheme 02
+            if 60 <= feature[1] <= 100 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
+                color_features.append("Yellow")
+            if 30 <= feature[1] <= 60 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
+                color_features.append("Yellow shades")
+
+            if 30 <= feature[1] <= 100 and -100 <= feature[0] <= -50 : 
+                color_features.append("Green")
+            if 30 <= feature[1] <= 100 and -50 <= feature[0] <= -30 : 
+                color_features.append("Green shades")
+
+            if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
+                color_features.append("Blue")
+            if -50 <= feature[1] <= -30 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
+                color_features.append( "Blue shades" )
+            if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
+                color_features.append( "Blue shades" )
             
-        if 30 <= feature[0] <= 70 and 40 <= feature[1] : 
-            color_features.append("Orange")
-        if 20 <= feature[0] <= 40 and 30 <= feature[1] : 
-            color_features.append("Orange shades")
 
-        # color sceheme 02
-        if 60 <= feature[1] <= 100 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
-            color_features.append("Yellow")
-        if 0 <= feature[1] <= 60 and (-40 <= feature[0] <= 0 or 0 <= feature[0] <= 40) : 
-            color_features.append("Yellow shades")
+            # color sceheme 03
+            if -25 <= feature[1] <= 25 and -25 <= feature[0] <= 25 :
+                color_features.append("Black")
+                color_features.append("Black shades")
 
-        if 0 <= feature[1] <= 100 and -100 <= feature[0] <= -50 : 
-            color_features.append("Green")
-        if 0 <= feature[1] <= 100 and -50 <= feature[0] <= 0 : 
-            color_features.append("Green shades")
+        else :
+            # part of color sceheme 03
+            color_features.append("White shades")
 
-        if -100 <= feature[1] <= -50 and 60 <= feature[0] <= 100 : 
-            color_features.append("Blue")
-        if -50 <= feature[1] <= 0 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( "Blue shades" )
-        if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
-            color_features.append( "Blue shades" )
-            
+    print("l", color_LAB_lchannel)
+    print("a", color_LAB_achannel)
+    print("b", color_LAB_bchannel)
+
     temp = []
     flat_list = []
     for color_feature in color_features:
@@ -105,9 +124,10 @@ def extract_color_features(img_path):
     db = TinyDB('database/design_usages.json')
 
     design_feature = [] # design usages
-   
+
     for item in list(dict.fromkeys(flat_list)):
         match item:
+
             case "Blue":
                 blue_usages = []
                 for i in range(3):

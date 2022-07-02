@@ -28,7 +28,8 @@ white_color = sRGBColor(255, 255, 255)
 
 
 def color_section_01(color) :
-    color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
+    # Convert from RGB to Lab Color Space
+    color1_lab = convert_color(color, LabColor)
 
     print("l channel of the red color " , math.sqrt(color1_lab.lab_l))
     if color1_lab.lab_a > 0 :
@@ -40,31 +41,15 @@ def color_section_01(color) :
         print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
     else :
         print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
-        print("-----------------------------------------------------------")
-
-
-def color_section_02(color) :
-    color1_lab = convert_color(color, LabColor) # Convert from RGB to Lab Color Space
-
-    if color1_lab.lab_a < 0 :
-        print("a channel of the red color " , math.sqrt( (color1_lab.lab_a*-1) )*-1 )
-    else :
-        print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
-
-    if color1_lab.lab_b < 0 :
-        print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
-    else :
-        print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
-
+    print("----------------------------------------------------------------------------------")
 
 
 def color_sections(extracted_colors) :
+    # converting colors to sRGB version
     sRGB_versions = []
     for color in extracted_colors :
         sRGB_versions.append(sRGBColor(color[0], color[1], color[2]))
-
     color_1_LAB = convert_color(sRGB_versions[0], LabColor)
-
 
     if color_1_LAB.lab_a < 0 :
         color_1_LAB_achannel = int(round(math.sqrt(color_1_LAB.lab_a * -1), 0) * -1)
@@ -81,12 +66,13 @@ def color_sections(extracted_colors) :
     else :
         color_1_LAB_lchannel = int(round(math.sqrt(color_1_LAB.lab_l), 0))
 
-    # checing channel values
+    # checking channel values
     print("L", color_1_LAB_lchannel)
     print("A", color_1_LAB_achannel)
     print("B", color_1_LAB_bchannel)
 
-    if color_1_LAB_lchannel < 85 :
+
+    if color_1_LAB_lchannel < 85 :  # condition to check the lab.l contribution
         # color sceheme 01
         if 70 <= color_1_LAB_achannel <= 80 and color_1_LAB_bchannel >= 70 : 
             print("Red !")
@@ -134,6 +120,7 @@ def color_sections(extracted_colors) :
             print("White !")
             print("White shades !")
         
+
 # extracted_colors = [ (131, 188, 118), (12, 207, 0) ]
 color_section_01(white_color)
 color_sections( [(255, 117, 117)] ) 
@@ -150,17 +137,28 @@ color_sections( [(255, 117, 117)] )
 
 
 
+# def color_section_02(color) :
+#     color1_lab = convert_color(color, LabColor)
+
+#     if color1_lab.lab_a < 0 :
+#         print("a channel of the red color " , math.sqrt( (color1_lab.lab_a*-1) )*-1 )
+#     else :
+#         print("a channel of the red color " , math.sqrt(color1_lab.lab_a))
+
+#     if color1_lab.lab_b < 0 :
+#         print("b channel of the red color " , math.sqrt( (color1_lab.lab_b*-1) )*-1 )
+#     else :
+#         print("b channel of the red color " , math.sqrt(color1_lab.lab_b))
 
 
+# def image_manipulation():
+#     original_image = cv2.imread('images/Yellow_Image.jpg')
+#     cv2.imshow("Yellow Image" ,original_image)
+#     cv2.waitKey(0) # infinite time | belongs to the upper show func
 
-def image_manipulation():
-    original_image = cv2.imread('images/Yellow_Image.jpg')
-    cv2.imshow("Yellow Image" ,original_image)
-    cv2.waitKey(0) # infinite time | belongs to the upper show func
-
-    processed_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2LAB)[:,:,0]
-    cv2.imshow("Processed Image" ,processed_image)
-    cv2.waitKey(0) # infinite time | belongs to the upper show func
+#     processed_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2LAB)[:,:,0]
+#     cv2.imshow("Processed Image" ,processed_image)
+#     cv2.waitKey(0) # infinite time | belongs to the upper show func
 
 
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()

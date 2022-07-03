@@ -2,9 +2,13 @@ from collections import Counter
 from sklearn.cluster import KMeans
 import cv2
 import math
-from tinydb import TinyDB, Query # -> document oriented db
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
+
+from sklearn.metrics.cluster import rand_score
+from sklearn.metrics.cluster import adjusted_rand_score
+from sklearn.metrics.cluster import normalized_mutual_info_score
+from sklearn.metrics.cluster import fowlkes_mallows_score
 
 
 def extract_color_features(img_path):
@@ -18,7 +22,7 @@ def extract_color_features(img_path):
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
 
     # analyzing the image
-    num_of_colors = 3
+    num_of_colors = 1
     clf = KMeans(n_clusters = num_of_colors)
     color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters | After performing clustering, the cluster centers can be extracted via .cluster_centers_.
@@ -62,7 +66,7 @@ def extract_color_features(img_path):
     color_features = []
 
     for feature in channel_contribution :
-        
+        # if -6 < color_LAB_achannel < 6  and -6 < color_LAB_bchannel < 6 :
         # color sceheme 01
         if 70 <= feature[0] <= 80 and feature[1] >= 70 : 
             color_features.append( ("Red") )
@@ -97,7 +101,7 @@ def extract_color_features(img_path):
             color_features.append( "Blue shades" )
         if -100 <= feature[1] <= -50 and (0 <= feature[0] <= 60 or -60 <= feature[0] <= 0) : 
             color_features.append( "Blue shades" )
-        
+            
 
         # color sceheme 03
         if -25 <= feature[1] <= 25 and -25 <= feature[0] <= 25 :
@@ -115,86 +119,38 @@ def extract_color_features(img_path):
     print("Color features", color_features)
 
 
-    temp = []
-    flat_list = []
-    for color_feature in color_features:
-        temp.append(color_feature.split())
-        
-    for sublist in temp:
-        for item in sublist:
-            flat_list.append(item)
-    print("Flat list", flat_list)
+# extract_color_features('test/scheme 02/average/blue 03.png')
 
 
-    Fruit = Query()
-    db = TinyDB('database/design_usages.json')
+# scheme 01 evalution
+scheme01_labels_true = [1, 1, 1, 2, 2, 2, 2, 3, 3, 3]
+scheme01_labels_pred = [1, 1, 0, 2, 2, 0, 2, 3, 3, 0]
 
-    design_feature = [] # design usages
+scheme01_rand_score = rand_score(scheme01_labels_true, scheme01_labels_pred)
+scheme01_adjusted_rand_score = adjusted_rand_score(scheme01_labels_true, scheme01_labels_pred)
+scheme01_normalized_mutual_info_score = normalized_mutual_info_score(scheme01_labels_true, scheme01_labels_pred)
+scheme01_fowlkes_mallows_score = fowlkes_mallows_score(scheme01_labels_true, scheme01_labels_pred)
 
-    for item in list(dict.fromkeys(flat_list)):
-        match item:
+# print("Scheme 01 rand score", scheme01_rand_score)
+# print("Scheme 01 adjusted rand score", scheme01_adjusted_rand_score)
+# print("Scheme 01 normalized mutual info score", scheme01_normalized_mutual_info_score)
+# print("Scheme 01 fowlkes mallows score", scheme01_fowlkes_mallows_score)
 
-            case "Blue":
-                blue_usages = []
-                for i in range(3):
-                    blue_usages.append(db.search(Fruit.basicColor == 'Blue')[0]['usage'+str(i+1)])
-                for item in blue_usages:
-                    design_feature.append(item)
-            
-            case "Red":
-                red_usages = []
-                for i in range(3):
-                    red_usages.append(db.search(Fruit.basicColor == 'Red')[0]['usage'+str(i+1)])
-                for item in red_usages:
-                    design_feature.append(item)
-            
-            case "Orange":
-                orange_usages = []
-                for i in range(3):
-                    orange_usages.append(db.search(Fruit.basicColor == 'Orange')[0]['usage'+str(i+1)])
-                for item in orange_usages:
-                    design_feature.append(item)
-            
-            case "Purple":
-                purple_usages = []
-                for i in range(2):
-                    purple_usages.append(db.search(Fruit.basicColor == 'Purple')[0]['usage'+str(i+1)])
-                for item in purple_usages:
-                    design_feature.append(item)
-            
-            case "Green":
-                green_usages = []
-                for i in range(3):
-                    green_usages.append(db.search(Fruit.basicColor == 'Green')[0]['usage'+str(i+1)])
-                for item in green_usages:
-                    design_feature.append(item)
-            
-            case "Yellow":
-                yellow_usages = []
-                for i in range(3):
-                    yellow_usages.append(db.search(Fruit.basicColor == 'Yellow')[0]['usage'+str(i+1)])
-                for item in yellow_usages:
-                    design_feature.append(item)
-            
-            case "White":
-                white_usages = []
-                for i in range(2):
-                    white_usages.append(db.search(Fruit.basicColor == 'White')[0]['usage'+str(i+1)])
-                for item in white_usages:
-                    design_feature.append(item)
-            
-            case "Black":
-                black_usages = []
-                for i in range(2):
-                    black_usages.append(db.search(Fruit.basicColor == 'Black')[0]['usage'+str(i+1)])
-                for item in black_usages:
-                    design_feature.append(item)
-            
-            case "Brown":
-                brown_usages = []
-                for i in range(3):
-                    brown_usages.append(db.search(Fruit.basicColor == 'Brown')[0]['usage'+str(i+1)])
-                for item in brown_usages:
-                    design_feature.append(item)
 
-    return design_feature
+scheme02_labels_true = [4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
+scheme02_labels_pred = [4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 2]
+
+scheme02_rand_score = rand_score(scheme02_labels_true, scheme02_labels_pred)
+scheme02_adjusted_rand_score = adjusted_rand_score(scheme02_labels_true, scheme02_labels_pred)
+scheme02_normalized_mutual_info_score = normalized_mutual_info_score(scheme02_labels_true, scheme02_labels_pred)
+scheme02_fowlkes_mallows_score = fowlkes_mallows_score(scheme02_labels_true, scheme02_labels_pred)
+
+print("Scheme 02 rand score", scheme02_rand_score)
+print("Scheme 02 adjusted rand score", scheme02_adjusted_rand_score)
+print("Scheme 02 normalized mutual info score", scheme02_normalized_mutual_info_score)
+print("Scheme 02 fowlkes mallows score", scheme02_fowlkes_mallows_score)
+
+
+
+
+

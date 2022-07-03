@@ -20,9 +20,10 @@ def extract_color_features(img_path):
     # analyzing the image
     clf = KMeans(n_clusters = 3)
     color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
-    center_colors = clf.cluster_centers_ # RGB color values belong to clusters
+    center_colors = clf.cluster_centers_ # RGB color values belong to clusters | After performing clustering, the cluster centers can be extracted via .cluster_centers_.
+    # https://scikit-learn-general.narkive.com/2113zSYN/interpreting-the-cluster-centers-in-sklearn-kmeans
     counts = Counter(color_labels) # amounts of three cluster collections
-
+    print(center_colors)
 
     # adding RGB values into an array
     extracted_colors = []

@@ -14,81 +14,135 @@ function classifyText()
     });
 
     // plants/garden based word bag
-    let plantation = 
+    let products_option_one = 
     [
-        'The easiest way to make healthy life by buying favourite plants', 
-        'Look natural with plantings',
-        'Loved by gardens and trusted by gardners',
-        'Save the earth with plants',
-        'Growing beautiful plants at home has never been easier',
-        'Delivering plants with hapiness',
-        'One with nature',
-        'Plants make life better',
-        'Proper greening and smart solutions',
-        'Bring calm to your place with interior plants',
-        'Healthy plants garden and home',
-        'We take care of your garden and flowers',
-        'Plants for your interior',
-        'Plant makes everything better',
-        'Decorate your garden with plants',
-        'Home is where my plants are',
-        'Shop rare plants with plants collection',
-        'Drops on leaves',
-        'Create your urben jungle',
-        'Plants and gardening for everyone'
+        'tropical', 'product', 'updates', 'shops', 'discounts', 'supplements', 'shop now', 'order', 'organic', 'customers',
+        'oil', 'farms', 'original', 'source', 'newsletter', 'natural', 'nature', 'glow', 'glowing', 'makeup',
+    ]
+    let products_option_two = 
+    [
+        'look', 'tools', 'modern', 'style', 'personality', 'products', 'best', 'brands', 'learn more', 'better',
+        'sleep', 'work', 'day', 'night', 'flavor', 'quality', 'unique', 'premium', 'energetic', 'worldwide',
+    ]
+    let products_option_three = 
+    [
+        'oil', 'farms', 'original', 'source', 'newsletter', 'natural', 'nature', 'glow', 'glowing', 'makeup',
+        'happy', 'million', 'trending', 'shop', 'beauty', 'clean', 'drive', 'kits', 'wheels', 'eletronics',
+    ]
+    let products_option_four = 
+    [
+        'eco', 'farming', 'journey', 'hobby', 'cycling', 'bicyle', 'fish', 'bottle', 'water', 'sell',
+        'winter', 'collection', 'fashionable', 'creative', 'classy', 'clothes', 'dress', 'baby', 'fashion', 'modern',
+    ]
+    let products_option_five = 
+    [
+        'collection', 'luxury', 'stylings', 'styles', 'your', 'speak', 'energy', 'bring', 'ideas', 'life',
+        'quality', 'outfits', 'latest', 'heat', 'winter', 'summer', 'model', 'bag', 'hoodie', 'hoodies',
+        'adidas', 'nike', 'boot', 'personal', 'elegant', 'shoes', 'arrivals', 'new', 'community', 'deliver',
+        'tips', 'off', 'dressing', 'market', 'comfortable', 'natural', 'pro', 'aesthetic', 'shirt', 'shirts'
     ]
     
     // education/courses based word bag
-    let education = 
+    let ecommerce_bag_01 = 
     [
-        'learning makes me happy',
-        'getting you where you want to study',
-        'a way to improve your skills',
-        'online education is now easy',
-        'build better assignments',
-        'schools are closed learning is open',
-        'better future for your kids',
-        'study from home with experts',
-        'welcome to private university',
-        'grow your skills to advance your career path',
-        'the best online course',
-        'a new way to improve your skills',
-        'improve your skills faster',
-        'you can learn anything',
-        'your mobile education',
-        'education', 
-        'tutorials', 
-        'courses', 
-        'course',
-        'new way of learning'
+        'shopping', 'cart', 'services', 'purchase', 'credit', 'debit', 'selling', 'goods', 'shop', 'customer',
+        'offers', 'seasonal', 'shopping', 'shop', 'change', 'order', 'start', 'add', 'filter', 'profile',
+    ]
+    let ecommerce_bag_02 = 
+    [
+        'faq', 'contact', 'ratings', 'more', 'products', 'rate', 'discount', 'price', 'stock', 'edition',
+        'flash', 'deals', 'items', 'sold', 'seller', 'category', 'size', 'color', 'scan', 'collection',
+    ]
+    let ecommerce_bag_03 = 
+    [
+        'earn', 'buy', 'today', 'off', 'now', 'greatest', 'places', 'finest', 'view', 'all',
+        'marketplace', 'find', 'search', 'explore', 'marketplace', 'social', 'sale', 'sales', 'best', 'brands',
+    ]
+    let ecommerce_bag_04 = 
+    [
+        'sold', 'out', 'you', 'interest', 'featured', 'language', 'english', 'china', 'wish', 'list',
+        'register', 'coupen', 'purchase', 'over', 'now', 'claim', 'lkr', 'welcome', 'also', 'favourites',
+    ]
+    let ecommerce_bag_05 = 
+    [
+        'buyer', 'protection', 'sell on', 'more to love', 'browse', 'global', 'webiste', 'credit', 'debit', 'ali',
+        'low', 'price', 'promotion', 'friday', 'black', 'great', 'value', 'customer services', 'reports', 'disputes',
+    ]
+    let ecommerce_bag_06 = 
+    [
+        'Intellectual Property Protection', 'Privacy Policy', 'Sitemap', 'Information for EU consumers', 'Transaction Services', 'User Information', 'Delivery', 'option', 'feedback', 'servey',
+        'Partnerships', 'Collaborate', 'Shopping', 'Worldwide', 'islandwide', 'payment', 'Shop with confidence', 'Help center', 'Download', 'mobile',
     ]
 
     // fashion/clothing based word bag
-    let clothes = 
+    let financial_bag_01 = 
     [
-        'dennim',
-        'shirt',
-        'clothes',
-        'wear',
-        'classy',
+        'information', 'about', 'us', 'bank', 'contact', 'money', 'financial', 'manage', 'salary', 'card',
+        'report', 'interest', 'bonus', 'fraud', 'funds', 'expenses', 'earnings', 'invsesting', 'number', 'cvv',
+    ]
+    let financial_bag_02 = 
+    [
+        'income', 'wallet', 'digital', 'currency', 'balance', 'send', 'dollar', 'transactions', 'salary', 'save',
+        'report', 'interest', 'payments', 'pay', 'details', 'activity', 'total', 'deposit', 'fixed', 'savings',
+    ]
+    let financial_bag_03 = 
+    [
+        'online', 'transactions', 'atm', 'withdraw', 'swip', 'pay', 'american express', 'investing', 'bill', 'members',
+        'premium', 'holder', 'partner', 'mobile app', 'grow', 'apple pay', 'google pay', 'analytics', 'accounts', 'number',
+    ]
+    let financial_bag_04 = 
+    [
+        'crypto', 'bitcoin', 'etherium', 'decetralised', 'secure', 'protocol', 'solana', 'exchange', 'foreign', 'looping',
+        'tokens', 'blocks', 'blockchain', 'trading', 'algorithmic', 'strategies', 'futurpe', 'passive', 'coin', 'bitmart',
+    ]
+    let financial_bag_05 = 
+    [
+        'generation', 'connect', 'top up', 'receive', 'send', 'stats', 'fee', 'convert', 'assets', 'nft',
+        'collective', 'auctions', 'reliability', 'billions', 'millions', 'execution', 'laverage', 'economy', 'airdrop', 'track',
     ]
 
     // crypto currency based word bag
-    let crypto = 
+    let business_bag_01 = 
     [
-        'bitcoin',
-        'etherium',
-        'nft',
-        'generative',
-        'blockchain',
-        'You love fff ttt',
+        'products', 'brands', 'experience', 'work', 'build', 'client', 'projects', 'reviews', 'marketing', 'demo',
+        'portfolio', 'software', 'industry', 'capital', 'venture', 'values', 'company', 'markets', 'airdrop', 'pricing',
+    ]
+    let business_bag_02 = 
+    [
+        'join', 'requirements', 'experience', 'business', 'community', 'expert', 'team', 'productive', 'founder', 'manage',
+        'budget', 'demo', 'architect', 'ralse', 'marketing', 'agency', 'startup', 'brands', 'help', 'work',
+    ]
+    let business_bag_03 = 
+    [
+        'partners', 'success', 'tasks', 'digital', 'solutions', 'large', 'scale', 'create', 'raise', 'audience',
+        'professional', 'technology', 'architect', 'flexible', 'afford', 'explore', 'come', 'estimate', 'meet', 'studio',
     ]
 
+
     // train word bags according to the given configs
-    classifier.train(plantation, 'plantation');
-    classifier.train(education, 'education');
-    classifier.train(clothes, 'clothes');
-    classifier.train(crypto, 'crypto');
+    classifier.train(products_option_one, 'products option one');
+    classifier.train(products_option_two, 'products option two');
+    classifier.train(products_option_three, 'products option three');
+    classifier.train(products_option_four, 'products option four');
+    classifier.train(products_option_five, 'products option five');
+
+    classifier.train(ecommerce_bag_01, 'ecommerce bag one');
+    classifier.train(ecommerce_bag_02, 'ecommerce bag two');
+    classifier.train(ecommerce_bag_03, 'ecommerce bag three');
+    classifier.train(ecommerce_bag_04, 'ecommerce bag four');
+    classifier.train(ecommerce_bag_05, 'ecommerce bag five');
+    classifier.train(ecommerce_bag_06, 'ecommerce bag six');
+    
+    classifier.train(financial_bag_01, 'financial bag one');
+    classifier.train(financial_bag_02, 'financial bag two');
+    classifier.train(financial_bag_03, 'financial bag three');
+    classifier.train(financial_bag_04, 'financial bag four');
+    classifier.train(financial_bag_05, 'financial bag five');
+
+    classifier.train(business_bag_01, 'business bag one');
+    classifier.train(business_bag_02, 'business bag two');
+    classifier.train(business_bag_03, 'business bag three');
+
 
     // predict saved phrases
     let predictions = classifier.predict('plants');
@@ -109,6 +163,7 @@ function classifyText()
             predictions.forEach ( prediction => 
             {
                 results.push(prediction.label)
+                console.log(results)
                 // console.log(`${prediction.label} (${prediction.confidence})`);
             })
         }
@@ -124,8 +179,29 @@ function classifyText()
 
     modal.style.display = "block";  
     
-    for (let i = 0; i < results.length; i++) {
-        var block = `<option value=${results[i]}>${results[i]}</option>` 
+    let cleanedResults = []
+    for(let k = 0; k < results.length; k++){
+        if(results[k].search("products") > -1){
+            cleanedResults.push("products");
+        }
+
+        else if(results[k].search("ecommerce") > -1){
+            cleanedResults.push("ecommerce");
+        }
+
+        else if(results[k].search("financial") > -1){
+            cleanedResults.push("financial");
+        }
+
+        else if(results[k].search("financial") > -1){
+            cleanedResults.push("business");
+        }
+    }
+    cleanedResults = [...new Set(cleanedResults)];
+    
+
+    for (let i = 0; i < cleanedResults.length; i++) {
+        var block = `<option value=${results[i]}>${cleanedResults[i]}</option>` 
         selectOptions.innerHTML += block
     }
     

@@ -1,6 +1,7 @@
 {
   "name": "designle",
   "version": "1.0.0",
+  "type":"module",
   "description": "This is a browser based UX Suggetions tool for identifying UX defects in UI designs done by UI/UX designers",
   "main": "main.js",
   "scripts": {
@@ -12,6 +13,7 @@
   "dependencies": {
     "browserify": "^17.0.0",
     "canvas": "^2.9.0",
-    "extract-colors": "^1.1.21"
+    "extract-colors": "^1.1.21",
+    "precision-recall": "^1.0.2"
   }
 }

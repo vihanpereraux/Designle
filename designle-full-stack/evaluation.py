@@ -5,6 +5,7 @@ import math
 from colormath.color_objects import sRGBColor, LabColor
 from colormath.color_conversions import convert_color
 
+import scipy.special
 from sklearn.metrics.cluster import rand_score
 from sklearn.metrics.cluster import adjusted_rand_score
 from sklearn.metrics.cluster import normalized_mutual_info_score
@@ -22,13 +23,13 @@ def extract_color_features(img_path):
     image = image.reshape(image.shape[0]*image.shape[1], 3) # keeps the aspect ratio of the resized image according to the original image
 
     # analyzing the image
-    num_of_colors = 1
+    num_of_colors = 2
     clf = KMeans(n_clusters = num_of_colors)
     color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
-    center_colors = clf.cluster_centers_ # RGB color values belong to clusters | After performing clustering, the cluster centers can be extracted via .cluster_centers_.
-    # https://scikit-learn-general.narkive.com/2113zSYN/interpreting-the-cluster-centers-in-sklearn-kmeans
+    center_colors = clf.cluster_centers_ # RGB color values belong to clusters | After performing clustering, the cluster centers can be extracted via .cluster_centers_. # https://scikit-learn-general.narkive.com/2113zSYN/interpreting-the-cluster-centers-in-sklearn-kmeans
     counts = Counter(color_labels) # amounts of three cluster collections
     print(center_colors)
+    print("Color labels", Counter(color_labels))  
 
     # adding RGB values into an array
     extracted_colors = []
@@ -119,9 +120,9 @@ def extract_color_features(img_path):
     print("Color features", color_features)
 
 
-# extract_color_features('test/scheme 02/average/blue 03.png')
+extract_color_features('images/Design01.png')
 
-
+# extract_color_features('test/scheme 01/average/red 01.png')
 # scheme 01 evalution
 scheme01_labels_true = [1, 1, 1, 2, 2, 2, 2, 3, 3, 3]
 scheme01_labels_pred = [1, 1, 0, 2, 2, 0, 2, 3, 3, 0]
@@ -137,6 +138,7 @@ scheme01_fowlkes_mallows_score = fowlkes_mallows_score(scheme01_labels_true, sch
 # print("Scheme 01 fowlkes mallows score", scheme01_fowlkes_mallows_score)
 
 
+# scheme 02 evalution
 scheme02_labels_true = [4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6]
 scheme02_labels_pred = [4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 2]
 
@@ -145,12 +147,11 @@ scheme02_adjusted_rand_score = adjusted_rand_score(scheme02_labels_true, scheme0
 scheme02_normalized_mutual_info_score = normalized_mutual_info_score(scheme02_labels_true, scheme02_labels_pred)
 scheme02_fowlkes_mallows_score = fowlkes_mallows_score(scheme02_labels_true, scheme02_labels_pred)
 
-print("Scheme 02 rand score", scheme02_rand_score)
-print("Scheme 02 adjusted rand score", scheme02_adjusted_rand_score)
-print("Scheme 02 normalized mutual info score", scheme02_normalized_mutual_info_score)
-print("Scheme 02 fowlkes mallows score", scheme02_fowlkes_mallows_score)
-
-
+# print("Scheme 02 rand score", scheme02_rand_score)
+# print("Scheme 02 adjusted rand score", scheme02_adjusted_rand_score)
+# print("Scheme 02 normalized mutual info score", scheme02_normalized_mutual_info_score)
+# print("Scheme 02 fowlkes mallows score", scheme02_fowlkes_mallows_score)
+# print(scipy.special.binom(36,2))
 
 
 

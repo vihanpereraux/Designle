@@ -193,7 +193,7 @@ function classifyText()
             cleanedResults.push("financial");
         }
 
-        else if(results[k].search("financial") > -1){
+        else if(results[k].search("business") > -1){
             cleanedResults.push("business");
         }
     }

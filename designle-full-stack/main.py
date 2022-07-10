@@ -15,6 +15,11 @@ def home():
     return render_template("home.html")
 
 
+# @app.route("/home")
+# def home():
+#     return render_template("home.html")
+
+
 @app.route("/suggestions", methods=['GET'])
 def suggestions():
     return render_template("suggestions.html")

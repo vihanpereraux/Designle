@@ -3,9 +3,15 @@
     src: url(../fonts/SpaceGrotesk-Medium.ttf);
 }
 
+@font-face {
+  font-family: Coolvetica;
+  src: url(../fonts/coolvetica_rg.otf);
+}
+
 
 .navbar{
-    background-color: #C7CEEA;
+    background-color: #E3CCE9;
+    height: 70px !important;
 }
 .navbar-brand{
     font-family: Space-Grotesk-Medium;
@@ -42,12 +48,10 @@ body{
 .loader-wrapper{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  right: 0;
   background-color: black;
 }
 #progress-bar{

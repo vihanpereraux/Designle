@@ -1,1 +1,49 @@
 {% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <div id="home-page">
+
+        <div id="header-warpper">
+            <div id="header">
+                <table id="first-section">
+                    <tbody>
+                        <tr>
+                            <td><h1 class="heading-text">Design</h1></td>
+                            <td><img class="arrow-img" src="{{ url_for('static',filename='img/arrow.png') }}" alt=""></td>
+                            <td><h1 class="heading-text">better</h1></td>
+                        </tr>
+
+                        <tr id="second-row">
+                            <td><img class="start-btn-img mx-auto d-block" src="{{ url_for('static',filename='img/start_button.png') }}" alt=""></td>
+                            <td><h1 class="heading-text">with</h1></td>
+                            <td><h1 class="hg-text">designle*</h1></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="second-section">
+                    <tbody>
+                        <tr>
+                            <td id="table-img-cell">
+                                <img class="table-img" src="{{ url_for('static',filename='img/table.png') }}" alt="">
+                            </td>
+                            <td id="text-cell"> 
+                                <ul>
+                                    <li>Lorem Ipsum has been the industry's standard dummy text ever since the </li>
+                                    <li class="mt-3">Lorem Ipsum has been the industry's standard dummy text ever since the</li>
+                                    <li class="mt-3">Lorem Ipsum has been the industry's standard dummy text ever since the</li>
+                                </ul>
+                            </td>
+                            <td id="btn-cell">
+                                <button class="btn home-btn mx-auto d-block">see more</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

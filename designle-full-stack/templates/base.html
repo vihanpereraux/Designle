@@ -14,6 +14,7 @@
 
         <!-- Custom styles -->
         <link rel="stylesheet" href="{{ url_for('static',filename='css/base_styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/home_styles.css') }}">
 
         <!-- Ajax -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -43,7 +44,7 @@
                 <!-- nav links -->
                 <div class="collapse xoxo navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/suggestions">Suggestions</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
@@ -66,7 +67,7 @@
             $(window).on("load", function(){
                 setTimeout(function(){
                     $(".loader-wrapper").fadeOut("slow");
-                }, 3000)
+                }, 1000)
             })
         </script>
 

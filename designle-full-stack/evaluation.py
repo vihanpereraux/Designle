@@ -28,8 +28,8 @@ def extract_color_features(img_path):
     color_labels = clf.fit_predict(image) # cluster collection -> lots of 0s,1s and 2s
     center_colors = clf.cluster_centers_ # RGB color values belong to clusters | After performing clustering, the cluster centers can be extracted via .cluster_centers_. # https://scikit-learn-general.narkive.com/2113zSYN/interpreting-the-cluster-centers-in-sklearn-kmeans
     counts = Counter(color_labels) # amounts of three cluster collections
-    print(center_colors)
-    print("Color labels", Counter(color_labels))  
+    # print(center_colors)
+    # print("Color labels", Counter(color_labels))  
 
     # adding RGB values into an array
     extracted_colors = []
@@ -114,10 +114,10 @@ def extract_color_features(img_path):
             color_features.append("White shades")
 
 
-    print("l", color_LAB_lchannel)
-    print("a", color_LAB_achannel)
-    print("b", color_LAB_bchannel)
-    print("Color features", color_features)
+    # print("l", color_LAB_lchannel)
+    # print("a", color_LAB_achannel)
+    # print("b", color_LAB_bchannel)
+    # print("Color features", color_features)
 
 
 extract_color_features('images/Design01.png')
@@ -132,9 +132,10 @@ scheme01_adjusted_rand_score = adjusted_rand_score(scheme01_labels_true, scheme0
 scheme01_normalized_mutual_info_score = normalized_mutual_info_score(scheme01_labels_true, scheme01_labels_pred)
 scheme01_fowlkes_mallows_score = fowlkes_mallows_score(scheme01_labels_true, scheme01_labels_pred)
 
+print("")
 # print("Scheme 01 rand score", scheme01_rand_score)
 # print("Scheme 01 adjusted rand score", scheme01_adjusted_rand_score)
-# print("Scheme 01 normalized mutual info score", scheme01_normalized_mutual_info_score)
+print("Scheme 01 normalized mutual info score", scheme01_normalized_mutual_info_score)
 # print("Scheme 01 fowlkes mallows score", scheme01_fowlkes_mallows_score)
 
 
@@ -149,9 +150,26 @@ scheme02_fowlkes_mallows_score = fowlkes_mallows_score(scheme02_labels_true, sch
 
 # print("Scheme 02 rand score", scheme02_rand_score)
 # print("Scheme 02 adjusted rand score", scheme02_adjusted_rand_score)
-# print("Scheme 02 normalized mutual info score", scheme02_normalized_mutual_info_score)
+print("Scheme 02 normalized mutual info score", scheme02_normalized_mutual_info_score)
 # print("Scheme 02 fowlkes mallows score", scheme02_fowlkes_mallows_score)
 # print(scipy.special.binom(36,2))
 
+scheme03_rand_score = 0.9999999999999999
+scheme03_normalized_mutual_info_score =  0.914247633390487
+# print("Scheme 03 rand score", scheme03_rand_score)
+print("Scheme 03 normalized mutual info score", scheme03_normalized_mutual_info_score)
+
+# sum_rand_score = (scheme01_rand_score + scheme02_rand_score + scheme03_rand_score)/3
+# print("----------------------------------------")
+# print("Average rand score : ", round(sum_rand_score, 2))
+# print("----------------------------------------")
+# print("")
+
+
+sum_normalized_mutual_info_score = (scheme01_normalized_mutual_info_score + scheme02_normalized_mutual_info_score + scheme03_normalized_mutual_info_score)/3
+print("---------------------------------------------------------")
+print("Average normalized mutual info score : ", round(sum_normalized_mutual_info_score, 2))
+print("---------------------------------------------------------")
+print("")
 
 

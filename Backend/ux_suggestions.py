@@ -50,13 +50,15 @@ def match_ux_suggestions(suggestion) :
     
     k = 1 
     for suggestion in sorted_scores:
-            if k < 6:
+            if k < 10:
                 print('Suggetion - ' , df[df.suggestion_id == suggestion[0]]['design_usage'].values[0])
-                print('Similarity score - ' , suggestion[1]*100,'%', suggestion[0])
+                print('Similarity score - ' , suggestion[1]*100,'%')
+                print('Data Id - ', suggestion[0])
+                print('UX Color theorem - ', df[df.suggestion_id == suggestion[0]]['ux_suggestion'].values[0])
                 print('--------------------------------------------------------------------------')
                 k = k + 1
 
-match_ux_suggestions('Blue ui components')
+match_ux_suggestions('Blue wordings')
 
 
 
